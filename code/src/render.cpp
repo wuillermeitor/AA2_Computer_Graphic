@@ -5,6 +5,7 @@
 #include <cstdio>
 #include <cassert>
 #include <SDL.h>
+#include <time.h>
 
 #include "GL_framework.h"
 
@@ -32,18 +33,25 @@ namespace Cube {
 
 namespace MyFirstShader {
 	void myInitCode(void);
-	GLuint myShaderCompile(void);
+	GLuint cubeShader(void);
+	GLuint octocahedronShader(void);
 
 	void myCleanupCode(void);
 	void myRenderCode(double currentTime);
-	GLuint myRenderProgram;
-	GLuint myVAO;
+	GLuint myRenderProgram[7];
+	GLuint myVAO [7];
 
 }
 
 namespace ej1 {
 	glm::vec3 pos1;
 	glm::vec3 pos2;
+}
+
+namespace ej3 {
+	glm::vec3 seed1;
+	glm::vec3 seed2;
+	float speed;
 }
 
 
@@ -54,6 +62,8 @@ namespace RenderVars {
 	const float FOV = glm::radians(65.f);
 	const float zNear = 1.f;
 	const float zFar = 50.f;
+	const float width = 800.f;
+	const float height = 600.f;
 
 	glm::mat4 _projection;
 	glm::mat4 _modelView;
@@ -137,7 +147,6 @@ void GLrender(double currentTime) {
 	RV::_modelView = glm::rotate(RV::_modelView, RV::rota[1], glm::vec3(1.f, 0.f, 0.f));
 	RV::_modelView = glm::rotate(RV::_modelView, RV::rota[0], glm::vec3(0.f, 1.f, 0.f));
 
-	RV::_MVP = RV::_projection * RV::_modelView;
 
 	// render code
 	/*Box::drawCube();
@@ -145,6 +154,8 @@ void GLrender(double currentTime) {
 	Cube::drawCube();*/
 	MyFirstShader::myRenderCode(currentTime);
 
+
+	RV::_MVP = RV::_projection * RV::_modelView;
 
 	ImGui::Render();
 }
@@ -183,11 +194,14 @@ void linkProgram(GLuint program) {
 /////////////////////////////////////////////MY FIRST SHADER
 namespace MyFirstShader {
 	void myCleanupCode(void) {
-		glDeleteVertexArrays(1, &myVAO);
-		glDeleteProgram(myRenderProgram);
+
+		for (int i = 0; i < 7; ++i) {
+			glDeleteVertexArrays(1, &myVAO[i]);
+			glDeleteProgram(myRenderProgram[i]);
+		}
 	}
 	///EXERCICI 1
-	GLuint myShaderCompile(void) {
+	GLuint cubeShader(void) {
 
 		static const GLchar * vertex_shader_source[] =
 		{
@@ -206,7 +220,6 @@ namespace MyFirstShader {
 			uniform vec3 pos;																					\n\
 			vec4 truePos=vec4(pos.x, pos.y, pos.z, 1);															\n\
 			uniform float time;																					\n\
-			uniform float size;																					\n\
 			uniform mat4 rotation;																				\n\
 			layout(triangles) in;																				\n\
 			layout(triangle_strip, max_vertices = 24) out;														\n\
@@ -322,6 +335,154 @@ namespace MyFirstShader {
 		return program;
 	}
 
+	GLuint octocahedronShader(void) {
+
+		static const GLchar * overtex_shader_source[] =
+		{
+			"#version 330														\n\
+		void main() {															\n\
+			const vec4 vertices[3] = vec4[3](	vec4( 0.25,-0.25, 0.5, 1.0),	\n\
+												vec4( 0.25, 0.25, 0.5, 1.0),	\n\
+												vec4(-0.25,-0.25, 0.5, 1.0));	\n\
+			gl_Position = vertices[gl_VertexID];								\n\
+		}"
+		};
+
+		static const GLchar * ogeom_shader_source[] =
+		{
+			"#version 330																						\n\
+			uniform vec3 pos;																					\n\
+			vec4 truePos=vec4(pos.x, pos.y, pos.z, 1);															\n\
+			uniform float time;																					\n\
+			uniform mat4 rotation;																				\n\
+			layout(triangles) in;																				\n\
+			layout(triangle_strip, max_vertices = 24) out;														\n\
+			void main() {																						\n\
+				const float size=2;																						\n\
+				const vec4 vertices[3] =	vec4[3](vec4( 0, 0, 0, 1.0),										\n\
+													vec4( size, size, 0, 1.0),									\n\
+													vec4( 0, size, size, 1.0));									\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+					gl_Position = (rotation * vertices[i] ) + truePos;								\n\
+					gl_PrimitiveID = 0;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				const vec4 vertices2[3] =	vec4[3](vec4(0, 0, 0, 1.0),								\n\
+													vec4(0, size, size, 1.0),								\n\
+													vec4( -size, size, 0, 1.0));								\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+					gl_Position = (rotation * vertices2[i] ) + truePos;							\n\
+					gl_PrimitiveID = 1;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				const vec4 vertices3[3] =	vec4[3](vec4( 0, size, size, 1.0),								\n\
+													vec4( size, size, 0, 1.0),								\n\
+													vec4( 0, 2*size, 0, 1.0));								\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+					gl_Position = (rotation * vertices3[i] ) + truePos;							\n\
+					gl_PrimitiveID = 2;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				const vec4 vertices4[3] =	vec4[3](vec4( 0, size, size, 1.0),								\n\
+													vec4( 0, 2*size, 0, 1.0),								\n\
+													vec4(-size, size, 0, 1.0));								\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+					gl_Position = (rotation * vertices4[i] ) + truePos;							\n\
+					gl_PrimitiveID = 3;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				const vec4 vertices5[3] =	vec4[3](vec4(0, 0, 0, 1.0),								\n\
+													vec4( 0, size, -size, 1.0),								\n\
+													vec4(size, size, 0, 1.0));								\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+					gl_Position = (rotation * vertices5[i] ) + truePos;							\n\
+					gl_PrimitiveID = 4;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				const vec4 vertices6[3] =	vec4[3](vec4( 0, 0, 0, 1.0),								\n\
+													vec4( -size, size, 0, 1.0),								\n\
+													vec4( 0,size, -size, 1.0));								\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+					gl_Position = (rotation * vertices6[i] ) + truePos;							\n\
+					gl_PrimitiveID = 5;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				const vec4 vertices7[3] =	vec4[3](vec4( 0, size, -size, 1.0),								\n\
+													vec4( 0, 2*size, 0, 1.0),								\n\
+													vec4( size, size, 0, 1.0));								\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+					gl_Position = (rotation * vertices7[i] ) + truePos;							\n\
+					gl_PrimitiveID = 6;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				const vec4 vertices8[3] =	vec4[3](vec4( 0, size, -size, 1.0),								\n\
+													vec4( -size, size, 0, 1.0),								\n\
+													vec4( 0, 2*size, 0, 1.0));								\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+					gl_Position = (rotation * vertices8[i] ) + truePos;							\n\
+					gl_PrimitiveID = 7;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+			}"
+		};
+
+		static const GLchar * ofragment_shader_source[] =
+		{
+			"#version 330\n\
+			\n\
+			out vec4 color;\n\
+			\n\
+			void main() {\n\
+				const vec4 colors[8] = vec4[8](	vec4(1.0,0.6,0.6,1.0),\n\
+												vec4(0.6,1.0,0.6,1.0),\n\
+												vec4(0.6,0.6,1.0,1.0),\n\
+												vec4(1.0,1.0,0.6,1.0),\n\
+												vec4(1.0,0.6,1.0,1.0),\n\
+												vec4(0.6,1.0,1.0,1.0),\n\
+												vec4(0.4,0.6,0.3,1.0),\n\
+												vec4(0.9,1.0,1.0,1.0));\n\
+				color=colors[gl_PrimitiveID];\n\
+			}"
+		};
+
+		GLuint overtex_shader;
+		GLuint ogeom_shader;
+		GLuint ofragment_shader;
+		GLuint oprogram;
+
+		overtex_shader = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(overtex_shader, 1, overtex_shader_source, NULL);
+		glCompileShader(overtex_shader);
+
+		ogeom_shader = glCreateShader(GL_GEOMETRY_SHADER);
+		glShaderSource(ogeom_shader, 1, ogeom_shader_source, NULL);
+		glCompileShader(ogeom_shader);
+
+		ofragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(ofragment_shader, 1, ofragment_shader_source, NULL);
+		glCompileShader(ofragment_shader);
+
+		oprogram = glCreateProgram();
+		glAttachShader(oprogram, overtex_shader);
+		glAttachShader(oprogram, ogeom_shader);
+		glAttachShader(oprogram, ofragment_shader);
+		glLinkProgram(oprogram);
+
+		glDeleteShader(overtex_shader);
+		glDeleteShader(ogeom_shader);
+		glDeleteShader(ofragment_shader);
+
+		return oprogram;
+	}
+
 	float getRandomFloatBetween(float a, float b) {
 		float random = (static_cast<float>(rand())) / static_cast<float>(RAND_MAX);
 		float diff = b - a;
@@ -330,48 +491,86 @@ namespace MyFirstShader {
 	}
 
 	void  myInitCode(void) {
+		srand(time(NULL));
 
-		myRenderProgram = myShaderCompile();
-		glCreateVertexArrays(1, &myVAO);
-		glBindVertexArray(myVAO);
+		myRenderProgram[0] = cubeShader();
+		glCreateVertexArrays(1, &myVAO[0]);
+		glBindVertexArray(myVAO[0]);
 
-		ej1::pos1 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 5));
-		ej1::pos2 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 5));
+		myRenderProgram[1] = octocahedronShader();
+		glCreateVertexArrays(1, &myVAO[1]);
+		glBindVertexArray(myVAO[1]);
+
+		ej1::pos1 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
+		ej1::pos2 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
+
+		ej3::seed1 = glm::vec3(1, 0, 0);
+		ej3::seed2 = glm::vec3(-1, 1.4, 0);
+		ej3::speed = 0;
 	}
 
 	void myRenderCode(double currentTime) {
 
 		const Uint8* keyboardState = SDL_GetKeyboardState(NULL);
 
-		if (keyboardState[SDL_SCANCODE_1]) {
-			double size = 0.25;
-			
+		if (keyboardState[SDL_SCANCODE_1]) {			
 
-			glUseProgram(myRenderProgram);
+			RV::_projection=glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
+
+			glUseProgram(myRenderProgram[0]);
 			glm::mat4 rotation = { cos(currentTime),	0.f, -sin(currentTime), 0.f,
 				0.f,				1.f, 0.f,				0.f,
 				sin(currentTime),	0.f, cos(currentTime),	0.f,
 				0.f,				0.f, 0.f,				1.f };
-			glUniform1f(glGetUniformLocation(myRenderProgram, "size"), (GLfloat)size);
-			glUniform3fv(glGetUniformLocation(myRenderProgram, "pos"), 1, (GLfloat*)&ej1::pos1);
-			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram, "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glUniform3fv(glGetUniformLocation(myRenderProgram[0], "pos"), 1, (GLfloat*)&ej1::pos1);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[0], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
 			glDrawArrays(GL_TRIANGLES, 0, 3);
 
-			glUseProgram(myRenderProgram);
-			glUniform1f(glGetUniformLocation(myRenderProgram, "size"), (GLfloat)size);
-			glUniform3fv(glGetUniformLocation(myRenderProgram, "pos"), 1, (GLfloat*)&ej1::pos2);
-			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram, "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glUniform3fv(glGetUniformLocation(myRenderProgram[0], "pos"), 1, (GLfloat*)&ej1::pos2);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[0], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
 			glDrawArrays(GL_TRIANGLES, 0, 3);
 		}
 		else if (keyboardState[SDL_SCANCODE_2]) {
 			std::cout << "2" << std::endl;
 		}
 		else if (keyboardState[SDL_SCANCODE_3]) {
-			std::cout << "3" << std::endl;
+			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
+
+			glUseProgram(myRenderProgram[0]);
+			glm::mat4 rotation = { cos(currentTime),	0.f, -sin(currentTime), 0.f,
+				0.f,				1.f, 0.f,				0.f,
+				sin(currentTime),	0.f, cos(currentTime),	0.f,
+				0.f,				0.f, 0.f,				1.f };
+			
+			glUniform3fv(glGetUniformLocation(myRenderProgram[0], "pos"), 1, (GLfloat*)&ej3::seed1);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[0], "rotation"), 1, GL_FALSE, glm::value_ptr(rotation));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[0], "pos"), 1, (GLfloat*)&ej3::seed2);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[0], "rotation"), 1, GL_FALSE, glm::value_ptr(glm::inverse(rotation)));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			ej3::seed1 -= glm::vec3(0, ej3::speed+0.5*0.005, 0);
+			ej3::seed2 -= glm::vec3(0, ej3::speed+0.5*0.005, 0);
+			ej3::speed += 0.005f;
 		}
+		else if (keyboardState[SDL_SCANCODE_4]) {
+			RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
 
+			glUseProgram(myRenderProgram[1]);
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej1::pos1);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+		}
+		else {
+			ej1::pos1 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
+			ej1::pos2 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
 
-		
+			ej3::seed1 = glm::vec3(1, 0, 0);
+			ej3::seed2 = glm::vec3(-1, 1.4, 0);
+			ej3::speed = 0;
+		}
+				
 	}
 
 }
