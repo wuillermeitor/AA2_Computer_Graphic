@@ -48,6 +48,24 @@ namespace ej1 {
 	glm::vec3 pos2;
 }
 
+namespace ej2 {
+	glm::vec3 pos1{ 0, 0, 0 };
+	glm::vec3 pos2{ 1.5, 0, 0 };
+	glm::vec3 pos3{ -1.5, 0, 0 };
+	glm::vec3 pos4{ 0, 2, 0 };
+	glm::vec3 pos5{ 0, -2, 0 };
+	glm::vec3 pos6{ 0, 0, 2 };
+	glm::vec3 pos7{ 0, 0, -2 };
+	glm::vec3 pos8{ 1, 1.5, 1 };
+	glm::vec3 pos9{ 1, -1.5, 1 };
+	glm::vec3 pos10{ 1, 1.5, -1 };
+	glm::vec3 pos11{ 1, -1.5, -1 };
+	glm::vec3 pos12{ -1, 1.5, 1 };
+	glm::vec3 pos13{ -1, -1.5, 1 };
+	glm::vec3 pos14{ -1, 1.5, -1 };
+	glm::vec3 pos15{ -1, -1.5, -1 };
+}
+
 namespace ej3 {
 	glm::vec3 seed1;
 	glm::vec3 seed2;
@@ -224,7 +242,7 @@ namespace MyFirstShader {
 		{
 			"#version 330																						\n\
 			uniform vec3 pos;																					\n\
-			const float size=0.5;																					\n\
+			const float size=0.5;																				\n\
 			vec4 truePos=vec4(pos.x, pos.y, pos.z, 1);															\n\
 			uniform float time;																					\n\
 			uniform mat4 rotation;																				\n\
@@ -812,7 +830,68 @@ namespace MyFirstShader {
 			glDrawArrays(GL_TRIANGLES, 0, 3);
 		}
 		else if (keyboardState[SDL_SCANCODE_2]) {
-			std::cout << "2" << std::endl;
+			RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
+			
+			glUseProgram(myRenderProgram[1]);
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos1);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos2);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos3);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos4);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos5);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos6);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos7);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos8);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos9);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos10);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos11);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos12);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos13);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos14);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
+
+			glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos15);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
 		}
 		else if (keyboardState[SDL_SCANCODE_3]) {
 			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
