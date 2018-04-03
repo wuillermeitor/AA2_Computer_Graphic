@@ -328,12 +328,12 @@ namespace MyFirstShader {
 			out vec4 color;\n\
 			\n\
 			void main() {\n\
-				const vec4 colors[6] = vec4[6](	vec4(1.0,0.0,0.0,1.0),\n\
-												vec4(0.0,1.0,0.0,1.0),\n\
-												vec4(0.0,0.0,1.0,1.0),\n\
-												vec4(1.0,1.0,0.0,1.0),\n\
-												vec4(1.0,0.0,1.0,1.0),\n\
-												vec4(0.0,1.0,1.0,1.0));\n\
+				const vec4 colors[6] = vec4[6](	vec4(0.90,0.0,0.13,1.0),\n\
+												vec4(0.80,0.0,0.13,1.0),\n\
+												vec4(1.0,0.1,0.13,1.0),\n\
+												vec4(0.14,0.2,0.829,1.0),\n\
+												vec4(0.14,0.17,0.829,1.0),\n\
+												vec4(0.1,0.21,0.823,1.0));\n\
 				color=colors[gl_PrimitiveID];\n\
 			}"
 		};
