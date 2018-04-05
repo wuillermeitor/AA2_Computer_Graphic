@@ -88,7 +88,7 @@ namespace ej4 {
 }
 
 namespace ej5 {
-	int octoAmount = 50;
+	int octoAmount = 150;
 	glm::vec3* seeds = new glm::vec3[octoAmount];
 	float* seedR = new float[octoAmount];
 	glm::vec3* degRot = new glm::vec3[octoAmount];
@@ -103,7 +103,7 @@ namespace ej5 {
 namespace RenderVars {
 	const float FOV = glm::radians(65.f);
 	const float zNear = 1.f;
-	const float zFar = 50.f;
+	const float zFar = 100.f;
 	const float width = 800.f;
 	const float height = 600.f;
 
@@ -791,11 +791,20 @@ namespace MyFirstShader {
 													\n\
 			void main() {							\n\
 				if(Ejercicio5){\n\
-					vec4 colors[4] = vec4[4](vec4(1.0,sin(time),1.0,1.0),\n\	//0\n\ //cuadrados\n\
-													vec4(1.0,sin(time),1.0,1.0),\n\	//1\n\
-													vec4(1.0,sin(time),1.0,1.0),\n\	//2\n\
-													vec4(1.0,sin(time),1.0,1.0));\n\	//3\n\
+					if (time < 5){		\n\
+					vec4 colors[4] = vec4[4](vec4(1-(time/5),1.0,1-(time/5),0),\n\	//0\n\ //cuadrados\n\
+													vec4(1-(time/5),1.0,1-(time/5),0),\n\	//1\n\
+													vec4(1-(time/5),1.0,1-(time/5),0),\n\	//2\n\
+													vec4(1-(time/5),1.0,1-(time/5),0));\n\	//3\n\
 					color=colors[gl_PrimitiveID];\n\
+						} \n\
+				else if (time > 5){		\n\
+					vec4 colors[4] = vec4[4](vec4(0,(1-(time-5)/5),0,0),\n\	//0\n\ //cuadrados\n\
+													vec4(0,(1-(time-5)/5),0,0),\n\	//1\n\
+													vec4(0,(1-(time-5)/5),0,0),\n\	//2\n\
+													vec4(0,(1-(time-5)/5),0,0));\n\	//3\n\
+					color=colors[gl_PrimitiveID];\n\
+						} \n\
 				}\n\
 				else{	\n\
 					vec4 colors[4] = vec4[4](vec4(1.0,0.25,0.1,1.0),\n\	//0\n\ //cuadrados\n\
