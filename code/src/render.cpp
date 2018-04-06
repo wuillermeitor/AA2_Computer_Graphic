@@ -6,7 +6,7 @@
 #include <cassert>
 #include <SDL.h>
 #include <time.h>
-
+#include <math.h>
 #include "GL_framework.h"
 
 ///////// fw decl
@@ -237,7 +237,6 @@ void linkProgram(GLuint program) {
 /////////////////////////////////////////////MY FIRST SHADER
 namespace MyFirstShader {
 	void myCleanupCode(void) {
-
 		for (int i = 0; i < 7; ++i) {
 			glDeleteVertexArrays(1, &myVAO[i]);
 			glDeleteProgram(myRenderProgram[i]);
@@ -787,23 +786,23 @@ namespace MyFirstShader {
 													\n\
 			uniform bool Ejercicio5;				\n\
 			uniform float time;						\n\
+			int halfciclecolor = 1;					\n\
 			out vec4 color;							\n\
-			float newtime = time;					\n\
 													\n\
 			void main() {							\n\
 				if(Ejercicio5){\n\
-					if (newtime < 5){		\n\
-					vec4 colors[4] = vec4[4](vec4(1-(newtime/5),1.0,1-(newtime/5),0),\n\	//0\n\ //cuadrados\n\
-													vec4(1-(newtime/5),0.8,1-(newtime/5),0),\n\	//1\n\
-													vec4(1-(newtime/5),0.9,1-(newtime/5),0),\n\	//2\n\
-													vec4(1-(newtime/5),0.7,1-(newtime/5),0));\n\	//3\n\
+					if (time < halfciclecolor){		\n\
+					vec4 colors[4] = vec4[4](vec4(1-(time/halfciclecolor),1.0,1-(time/halfciclecolor),0),\n\				//0\n\ //cuadrados\n\
+													vec4(1-(time/halfciclecolor),0.8,1-(time/halfciclecolor),0),\n\			//1\n\
+													vec4(1-(time/halfciclecolor),0.9,1-(time/halfciclecolor),0),\n\			//2\n\
+													vec4(1-(time/halfciclecolor),0.7,1-(time/halfciclecolor),0));\n\		//3\n\
 					color=colors[gl_PrimitiveID];\n\
 						} \n\
-					else if (newtime > 5){		\n\
-						vec4 colors[4] = vec4[4](vec4(0,(1-(newtime-5)/5),0,0),\n\	//0\n\ //cuadrados\n\
-														vec4(0,(1-(newtime-5)/5),0,0),\n\	//1\n\
-														vec4(0,(1-(newtime-5)/5),0,0),\n\	//2\n\
-														vec4(0,(1-(newtime-5)/5),0,0));\n\	//3\n\
+					else if (time > halfciclecolor && time < halfciclecolor*2){		\n\
+						vec4 colors[4] = vec4[4](vec4(0,(1-(time-halfciclecolor)/halfciclecolor),0,0),\n\	//0\n\ //cuadrados\n\
+														vec4(0,(1-(time-halfciclecolor)/halfciclecolor),0,0),\n\	//1\n\
+														vec4(0,(1-(time-halfciclecolor)/halfciclecolor),0,0),\n\	//2\n\
+														vec4(0,(1-(time-halfciclecolor)/halfciclecolor),0,0));\n\	//3\n\
 						color=colors[gl_PrimitiveID];\n\
 						} \n\
 				}\n\
@@ -1065,7 +1064,7 @@ namespace MyFirstShader {
 				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej5::seeds[i]);
 				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
-				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
+				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)fmod(currentTime, 2));
 
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(finalRot));
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
