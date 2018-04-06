@@ -35,7 +35,6 @@ namespace MyFirstShader {
 	void myInitCode(void);
 	GLuint cubeShader(void);
 	GLuint octocahedronShader(void);
-	//GLuint octocahedronMatrix(void);
 
 	void myCleanupCode(void);
 	void myRenderCode(double currentTime);
@@ -95,6 +94,7 @@ namespace ej5 {
 	float speed;
 	float lastTime = 0;
 	glm::vec3* colores = new glm::vec3[octoAmount];
+	bool Ejercicio5;
 }
 
 
@@ -788,22 +788,23 @@ namespace MyFirstShader {
 			uniform bool Ejercicio5;				\n\
 			uniform float time;						\n\
 			out vec4 color;							\n\
+			float newtime = time;					\n\
 													\n\
 			void main() {							\n\
 				if(Ejercicio5){\n\
-					if (time < 5){		\n\
-					vec4 colors[4] = vec4[4](vec4(1-(time/5),1.0,1-(time/5),0),\n\	//0\n\ //cuadrados\n\
-													vec4(1-(time/5),1.0,1-(time/5),0),\n\	//1\n\
-													vec4(1-(time/5),1.0,1-(time/5),0),\n\	//2\n\
-													vec4(1-(time/5),1.0,1-(time/5),0));\n\	//3\n\
+					if (newtime < 5){		\n\
+					vec4 colors[4] = vec4[4](vec4(1-(newtime/5),1.0,1-(newtime/5),0),\n\	//0\n\ //cuadrados\n\
+													vec4(1-(newtime/5),0.8,1-(newtime/5),0),\n\	//1\n\
+													vec4(1-(newtime/5),0.9,1-(newtime/5),0),\n\	//2\n\
+													vec4(1-(newtime/5),0.7,1-(newtime/5),0));\n\	//3\n\
 					color=colors[gl_PrimitiveID];\n\
 						} \n\
-				else if (time > 5){		\n\
-					vec4 colors[4] = vec4[4](vec4(0,(1-(time-5)/5),0,0),\n\	//0\n\ //cuadrados\n\
-													vec4(0,(1-(time-5)/5),0,0),\n\	//1\n\
-													vec4(0,(1-(time-5)/5),0,0),\n\	//2\n\
-													vec4(0,(1-(time-5)/5),0,0));\n\	//3\n\
-					color=colors[gl_PrimitiveID];\n\
+					else if (newtime > 5){		\n\
+						vec4 colors[4] = vec4[4](vec4(0,(1-(newtime-5)/5),0,0),\n\	//0\n\ //cuadrados\n\
+														vec4(0,(1-(newtime-5)/5),0,0),\n\	//1\n\
+														vec4(0,(1-(newtime-5)/5),0,0),\n\	//2\n\
+														vec4(0,(1-(newtime-5)/5),0,0));\n\	//3\n\
+						color=colors[gl_PrimitiveID];\n\
 						} \n\
 				}\n\
 				else{	\n\
@@ -925,9 +926,8 @@ namespace MyFirstShader {
 		else if (keyboardState[SDL_SCANCODE_2]) {
 			RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
 
-			bool Ejercicio5 = false;
 			bool localRotation = true;
-
+			ej5::Ejercicio5 = false;
 			glUseProgram(myRenderProgram[1]);
 
 			glm::mat4 scale{ 5.f, 0.f, 0.f, 0.f,
@@ -940,7 +940,7 @@ namespace MyFirstShader {
 			for (int i = 0; i < ej2::octoAmount; ++i) {
 				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)Ejercicio5);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "scale"), 1, GL_FALSE, glm::value_ptr(scale));
@@ -984,7 +984,7 @@ namespace MyFirstShader {
 
 			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
 
-			bool Ejercicio5 = false;
+			ej5::Ejercicio5 = false;
 			bool localRotation = false;
 			float mySize = 0.1f;
 
@@ -1017,7 +1017,7 @@ namespace MyFirstShader {
 
 				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej4::seeds[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)Ejercicio5);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(finalRot));
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
@@ -1029,7 +1029,7 @@ namespace MyFirstShader {
 
 			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
 
-			bool Ejercicio5 = true;
+			ej5::Ejercicio5 = true;
 			bool localRotation = false;
 			float mySize = 0.1f;
 
@@ -1063,9 +1063,10 @@ namespace MyFirstShader {
 
 				glUniform4fv(glGetUniformLocation(myRenderProgram[1], "color"), 1, (GLfloat*)&ej5::colores[i]);
 				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej5::seeds[i]);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)Ejercicio5);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
-				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
+				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
+
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(finalRot));
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
 				glDrawArrays(GL_TRIANGLES, 0, 3);

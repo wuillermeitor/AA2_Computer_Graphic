@@ -10,7 +10,7 @@
 
 /*extern void PhysicsInit();
 extern void PhysicsUpdate(float dt);
-extern void PhysicsCleanup();*/
+extern void Physicspp();*/
 extern void GUI();
 
 extern void GLmousecb(MouseEvent ev);
