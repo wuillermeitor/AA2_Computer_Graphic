@@ -846,6 +846,103 @@ namespace MyFirstShader {
 		return oprogram;
 	}
 
+	GLuint geometricMetamorfosis(void) {
+		static const GLchar * mvertex_shader_source[] =
+		{
+			"#version 330														\n\
+		void main() {															\n\
+			const vec4 vertices[3] = vec4[3](	vec4( 0.25,-0.25, 0.5, 1.0),	\n\
+												vec4( 0.25, 0.25, 0.5, 1.0),	\n\
+												vec4(-0.25,-0.25, 0.5, 1.0));	\n\
+			gl_Position = vertices[gl_VertexID];								\n\
+		}"
+		};
+
+		static GLchar * mgeom_shader_source[] =
+		{	"#version 330																						\n\
+			uniform float mySize;																				\n\
+			uniform vec3 pos;																					\n\
+			uniform float progress;																				\n\
+			vec4 truePos = vec4(pos.x, pos.y, pos.z, 1);														\n\
+			vec4 fix = vec4(0, mySize, 0, 0);																	\n\
+			uniform mat4 rotation;																				\n\
+			uniform bool localRot;																				\n\
+			layout(triangles) in;																				\n\
+			layout(triangle_strip, max_vertices = 136) out;														\n\
+			void main(){																						\n\
+			vec4 vertices1_1[12] =	vec4[12](		vec4( mySize/2, mySize/2, mySize/2, 1.0),	/*caraD*/		\n\
+													vec4( mySize/2, mySize/2, -mySize/2, 1.0),					\n\
+													vec4( mySize/2, mySize/2, -mySize/2, 1.0),					\n\
+													vec4( mySize/2, mySize/2, mySize/2, 1.0),					\n\
+													vec4( mySize/2, mySize/2, mySize/2, 1.0),	/*caraC*/		\n\
+													vec4( mySize/2, mySize/2, -mySize/2, 1.0),					\n\
+													vec4( -mySize/2, mySize/2,-mySize/2, 1.0),					\n\
+													vec4( -mySize/2, mySize/2, mySize/2, 1.0),					\n\
+													vec4( -mySize/2, mySize/2, mySize/2, 1.0),			/*caraI*/		\n\
+													vec4( -mySize/2, mySize/2, -mySize/2, 1.0),							\n\
+													vec4( -mySize/2, mySize/2, -mySize/2, 1.0),							\n\
+													vec4( -mySize/2, mySize/2, mySize/2, 1.0));							\n\
+			for(int j=0; j<3; ++j){																				\n\
+				for (int i = 0; i < 4; ++i) {																		\n\
+					if(localRot)																					\n\
+						gl_Position = (rotation * (vertices1_1[i+j*4]  + truePos));										\n\
+					else																							\n\
+						gl_Position = (rotation * (vertices1_1[i+j*4]))  + truePos;									\n\
+					gl_PrimitiveID = 0;																				\n\
+					EmitVertex();																					\n\
+					}																								\n\
+				EndPrimitive();																						\n\
+				}																									\n\
+			}																									\n\
+			"
+		};
+
+
+		static const GLchar * mfragment_shader_source[] = 
+		{"#version 330\n\
+			\n\
+			out vec4 color;\n\
+			\n\
+			void main() {\n\
+				const vec4 colors[4] = vec4[4](	vec4(0.90,0.0,0.13,1.0),\n\
+												vec4(0.80,0.0,0.13,1.0),\n\
+												vec4(1.0,0.1,0.13,1.0),\n\
+												vec4(0.14,0.2,0.829,1.0));\n\
+				color=colors[gl_PrimitiveID];\n\
+			}"
+		};
+
+		GLuint mvertex_shader;
+		GLuint mgeom_shader;
+		GLuint mfragment_shader;
+		GLuint mprogram;
+
+		mvertex_shader = glCreateShader(GL_VERTEX_SHADER);
+		glShaderSource(mvertex_shader, 1, mvertex_shader_source, NULL);
+		glCompileShader(mvertex_shader);
+
+		mgeom_shader = glCreateShader(GL_GEOMETRY_SHADER);
+		glShaderSource(mgeom_shader, 1, mgeom_shader_source, NULL);
+		glCompileShader(mgeom_shader);
+
+		mfragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+		glShaderSource(mfragment_shader, 1, mfragment_shader_source, NULL);
+		glCompileShader(mfragment_shader);
+
+		mprogram = glCreateProgram();
+		glAttachShader(mprogram, mvertex_shader);
+		glAttachShader(mprogram, mgeom_shader);
+		glAttachShader(mprogram, mfragment_shader);
+		glLinkProgram(mprogram);
+
+		glDeleteShader(mvertex_shader);
+		glDeleteShader(mgeom_shader);
+		glDeleteShader(mfragment_shader);
+
+		return mprogram;
+
+	};
+
 
 	float getRandomFloatBetween(float a, float b) {
 		float random = (static_cast<float>(rand())) / static_cast<float>(RAND_MAX);
@@ -865,9 +962,9 @@ namespace MyFirstShader {
 		glCreateVertexArrays(1, &myVAO[1]);
 		glBindVertexArray(myVAO[1]);
 
-		//myRenderProgram[2] = octocahedronMatrix();
-		//glCreateVertexArrays(1, &myVAO[2]);
-		//glBindVertexArray(myVAO[2]);
+		myRenderProgram[2] = geometricMetamorfosis();
+		glCreateVertexArrays(1, &myVAO[2]);
+		glBindVertexArray(myVAO[2]);
 
 		ej1::pos1 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
 		ej1::pos2 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
@@ -1071,6 +1168,24 @@ namespace MyFirstShader {
 				glDrawArrays(GL_TRIANGLES, 0, 3);
 				ej5::seeds[i] -= glm::vec3(0, 0.005f + ej5::speed*ej5::seedR[i], 0);
 			}
+		}
+		else if (keyboardState[SDL_SCANCODE_6]) {
+
+		}
+		else if (keyboardState[SDL_SCANCODE_7]) {
+			RV::_projection= glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
+			glUseProgram(myRenderProgram[2]);
+			float mySize = 1;
+			glm::vec3 pos{ 0, 5, 0 };
+			bool localRotation = false;
+			float progress = 0;
+
+			glUniform1f(glGetUniformLocation(myRenderProgram[2], "mySize"), (GLfloat)mySize);
+			glUniform1f(glGetUniformLocation(myRenderProgram[2], "progress"), (GLfloat)progress);
+			glUniform3fv(glGetUniformLocation(myRenderProgram[2], "pos"), 1, (GLfloat*)&pos);
+			glUniform1f(glGetUniformLocation(myRenderProgram[2], "localRot"), (GLboolean)localRotation);
+			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[2], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+			glDrawArrays(GL_TRIANGLES, 0, 3);
 		}
 		else {
 			ej1::pos1 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
