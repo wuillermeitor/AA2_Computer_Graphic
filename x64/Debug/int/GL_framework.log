@@ -14,32 +14,32 @@ e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(833): warning
 e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(834): warning C4129: '	': secuencia de escape de carácter no reconocida
 e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(835): warning C4129: '	': secuencia de escape de carácter no reconocida
 e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(836): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1235): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1235): warning C4129: ' ': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1236): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1237): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1238): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1242): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1242): warning C4129: ' ': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1243): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1244): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1245): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1250): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1250): warning C4129: ' ': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1251): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1252): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1253): warning C4129: '	': secuencia de escape de carácter no reconocida
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1298): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1317): warning C4305: '=': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1324): warning C4305: '=': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1331): warning C4305: '=': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1337): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1395): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1433): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1478): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1549): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1554): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1559): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1191): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1191): warning C4129: ' ': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1192): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1193): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1194): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1198): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1198): warning C4129: ' ': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1199): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1200): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1201): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1206): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1206): warning C4129: ' ': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1207): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1208): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1209): warning C4129: '	': secuencia de escape de carácter no reconocida
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1254): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1273): warning C4305: '=': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1280): warning C4305: '=': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1287): warning C4305: '=': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1293): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1351): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1389): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1434): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1505): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1510): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(1515): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
   GL_framework.vcxproj -> E:\GuillermoHDD\Documents\AA2_Computer_Graphic\x64\Debug\GL_framework.exe
   0 archivo(s) copiado(s)
   0 archivo(s) copiado(s)

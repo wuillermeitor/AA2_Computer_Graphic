@@ -1069,151 +1069,107 @@ namespace MyFirstShader {
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices19[4] =	vec4[4](vec4( mySize/3, 5*mySize/3, 0, 1.0),							\n\
-													vec4( 0, 5*mySize/3, mySize/3, 1.0),						\n\
-													vec4( 2*mySize/3, mySize, mySize/3, 1.0),					\n\
-													vec4( mySize/3, mySize, 2*mySize/3, 1.0));					\n\
+				 vec4 vertices19[4] =	vec4[4](vec4( 0, 5*mySize/3, mySize/3, 1.0),//arriba izquierda			\n\
+													vec4( mySize/3, 5*mySize/3, 0, 1.0),//arriba derecha		\n\
+													vec4( 2*mySize/3, 4*mySize/3, 0, 1.0),//centro derecha		\n\
+													vec4( 2*mySize/3, mySize, mySize/3, 1.0));//abajo derecha	\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
 						gl_Position = rotation * (vertices19[i]  + truePos);									\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices19[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 2;																			\n\
+					gl_PrimitiveID = 3;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices20[3] =	vec4[3](	vec4( mySize/3, mySize, 2*mySize/3, 1.0),					\n\
-													vec4( 2*mySize/3, mySize, mySize/3, 1.0),					\n\
-													vec4( 0, 5*mySize/3, mySize/3, 1.0));						\n\
-				for (int i = 0; i < 3; ++i) {																	\n\
+				 vec4 vertices20[4] = vec4[4](	vec4( 2*mySize/3, mySize, mySize/3, 1.0),//abajo derecha		\n\
+												vec4( mySize/3, mySize, 2*mySize/3, 1.0),//abajo izquierda		\n\
+												vec4( 0, 4*mySize/3, 2*mySize/3, 1.0),//centro izquierda		\n\
+												vec4( 0, 5*mySize/3, mySize/3, 1.0));//arriba izquierda			\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
 						gl_Position = rotation * (vertices20[i]  + truePos);									\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices20[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 2;																			\n\
+					gl_PrimitiveID = 3;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				vec4 vertices21[3] =	vec4[3](vec4( 2*mySize/3, mySize, mySize/3, 1.0),						\n\
-													vec4( 2*mySize/3, 4*mySize/3, 0, 1.0),						\n\
-													vec4( mySize/3, 5*mySize/3, 0, 1.0));						\n\
-				for (int i = 0; i < 3; ++i) {																	\n\
-					if(localRot)																				\n\
-						gl_Position = rotation * (vertices21[i]  + truePos);									\n\
-					else																						\n\
-						gl_Position = (rotation * (vertices21[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 2;																			\n\
-					EmitVertex();																				\n\
-				}																								\n\
-				EndPrimitive();																					\n\
-				 vec4 vertices22[4] =	vec4[4](vec4( 0, 5*mySize/3, mySize/3, 1.0),							\n\
-													vec4( -mySize/3, 5*mySize/3, 0, 1.0),						\n\
-													vec4( -mySize/3, mySize, 2*mySize/3, 1.0),					\n\
-													vec4( -2*mySize/3, mySize, mySize/3, 1.0));					\n\
+				 vec4 vertices22[4] = vec4[4](	vec4( -mySize/3, 5*mySize/3, 0, 1.0),//arriba izquierda			\n\
+												vec4( 0, 5*mySize/3, mySize/3, 1.0),//arriba derecha			\n\
+												vec4( 0, 4*mySize/3, 2*mySize/3, 1.0),//centro derecha			\n\
+												vec4( -mySize/3, mySize, 2*mySize/3, 1.0));//abajo derecha		\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
 						gl_Position = rotation * (vertices22[i]  + truePos);									\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices22[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 1;																			\n\
+					gl_PrimitiveID = 3;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices23[3] =	vec4[3](vec4( -mySize/3, mySize, 2*mySize/3, 1.0),								\n\
-													vec4( 0, 4*mySize/3, 2*mySize/3, 1.0),								\n\
-													vec4( 0, 5*mySize/3, mySize/3, 1.0));								\n\
-				for (int i = 0; i < 3; ++i) {																	\n\
+				 vec4 vertices23[4] = vec4[4](	vec4( -mySize/3, mySize, 2*mySize/3, 1.0),//abajo derecha		\n\
+												vec4( -2*mySize/3, mySize, mySize/3, 1.0),//abajo izquierda		\n\
+												vec4( -2*mySize/3, 4*mySize/3, 0, 1.0),//centro izquierda		\n\
+												vec4( -mySize/3, 5*mySize/3, 0, 1.0));//arriba izquierda		\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
 						gl_Position = rotation * (vertices23[i]  + truePos);									\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices23[i]-fix))  + truePos;									\n\
-					gl_PrimitiveID = 1;\n\
+						gl_Position = (rotation * (vertices23[i]-fix))  + truePos;								\n\
+					gl_PrimitiveID = 3;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices24[3] =	vec4[3](vec4( -2*mySize/3, 4*mySize/3, 0, 1.0),								\n\
-													vec4( -2*mySize/3, mySize, mySize/3, 1.0),								\n\
-													vec4( -mySize/3, 5*mySize/3, 0, 1.0));								\n\
-				for (int i = 0; i < 3; ++i) {																	\n\
-					if(localRot)																				\n\
-						gl_Position = rotation * (vertices24[i]  + truePos);									\n\
-					else																						\n\
-						gl_Position = (rotation * (vertices24[i]-fix))  + truePos;									\n\
-					gl_PrimitiveID = 1;\n\
-					EmitVertex();																				\n\
-				}																								\n\
-				EndPrimitive();																					\n\
-				 vec4 vertices25[4] =	vec4[4](vec4( 0, 5*mySize/3, -mySize/3, 1.0),								\n\
-													vec4( -mySize/3, mySize, -2*mySize/3, 1.0),								\n\
-													vec4( -mySize/3, 5*mySize/3, 0, 1.0),								\n\
-													vec4( -2*mySize/3, mySize, -mySize/3, 1.0));								\n\
+				 vec4 vertices25[4] = vec4[4](	vec4( 0, 5*mySize/3, -mySize/3, 1.0),//arriba izquierda			\n\
+												vec4( -mySize/3, 5*mySize/3, 0, 1.0),//arriba derecha			\n\
+												vec4( -2*mySize/3, 4*mySize/3, 0, 1.0),//centro derecha			\n\
+												vec4( -2*mySize/3, mySize, -mySize/3, 1.0));//abajo derecha		\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
 						gl_Position = rotation * (vertices25[i]  + truePos);									\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices25[i]-fix))  + truePos;									\n\
-					gl_PrimitiveID = 2;\n\
+						gl_Position = (rotation * (vertices25[i]-fix))  + truePos;								\n\
+					gl_PrimitiveID = 3;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices26[3] =	vec4[3](vec4( 0, 5*mySize/3, -mySize/3, 1.0),								\n\
-													vec4( 0, 4*mySize/3, -2*mySize/3, 1.0),								\n\
-													vec4( -mySize/3, mySize, -2*mySize/3, 1.0));								\n\
-				for (int i = 0; i < 3; ++i) {																	\n\
+				 vec4 vertices26[4] = vec4[4](	vec4( 0, 5*mySize/3, -mySize/3, 1.0),//arriba izquierda			\n\
+												vec4( 0, 4*mySize/3, -2*mySize/3, 1.0),//centro izquierda		\n\
+												vec4( -mySize/3, mySize, -2*mySize/3, 1.0),//abajo izquierda	\n\
+												vec4( -2*mySize/3, mySize, -mySize/3, 1.0));//abajo derecha		\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
 						gl_Position = rotation * (vertices26[i]  + truePos);									\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices26[i]-fix))  + truePos;									\n\
-					gl_PrimitiveID = 2;\n\
+						gl_Position = (rotation * (vertices26[i]-fix))  + truePos;								\n\
+					gl_PrimitiveID = 3;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices27[3] =	vec4[3](vec4( -mySize/3, 5*mySize/3, 0, 1.0),								\n\
-													vec4( -2*mySize/3, mySize, -mySize/3, 1.0),								\n\
-													vec4( -2*mySize/3, 4*mySize/3, 0, 1.0));								\n\
-				for (int i = 0; i < 3; ++i) {																	\n\
-					if(localRot)																				\n\
-						gl_Position = rotation * (vertices27[i]  + truePos);									\n\
-					else																						\n\
-						gl_Position = (rotation * (vertices27[i]-fix))  + truePos;									\n\
-					gl_PrimitiveID = 2;\n\
-					EmitVertex();																				\n\
-				}																								\n\
-				EndPrimitive();																					\n\
-				 vec4 vertices28[4] =	vec4[4](vec4( mySize/3, 5*mySize/3, 0, 1.0),								\n\
-													vec4( 2*mySize/3, mySize, -mySize/3, 1.0),								\n\
-													vec4( 0, 5*mySize/3, -mySize/3, 1.0),								\n\
-													vec4( mySize/3, mySize, -2*mySize/3, 1.0));								\n\
+				 vec4 vertices28[4] = vec4[4](	vec4( mySize/3, 5*mySize/3, 0, 1.0),//arriba izquierda			\n\
+												vec4( 0, 5*mySize/3, -mySize/3, 1.0),//arriba derecha			\n\
+												vec4( 0, 4*mySize/3, -2*mySize/3, 1.0),//centro derecha			\n\
+												vec4( mySize/3, mySize, -2*mySize/3, 1.0));//abajo derecha		\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
 						gl_Position = rotation * (vertices28[i]  + truePos);									\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices28[i]-fix))  + truePos;									\n\
-					gl_PrimitiveID = 1;\n\
+						gl_Position = (rotation * (vertices28[i]-fix))  + truePos;								\n\
+					gl_PrimitiveID = 3;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices29[3] =	vec4[3](vec4( 0, 5*mySize/3, -mySize/3, 1.0),								\n\
-													vec4( mySize/3, mySize, -2*mySize/3, 1.0),								\n\
-													vec4( 0, 4*mySize/3, -2*mySize/3, 1.0));								\n\
-				for (int i = 0; i < 3; ++i) {																	\n\
+				 vec4 vertices29[4] = vec4[4](	vec4( mySize/3, mySize, -2*mySize/3, 1.0),//abajo derecha		\n\
+												vec4( 2*mySize/3, mySize, -mySize/3, 1.0),//abajo izquierda		\n\
+												vec4( 2*mySize/3, 4*mySize/3, 0, 1.0),//centro izquierda		\n\
+												vec4( mySize/3, 5*mySize/3, 0, 1.0));//arriba izquierda			\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
 						gl_Position = rotation * (vertices29[i]  + truePos);									\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices29[i]-fix))  + truePos;									\n\
-					gl_PrimitiveID = 1;\n\
-					EmitVertex();																				\n\
-				}																								\n\
-				EndPrimitive();																					\n\
-				 vec4 vertices30[3] =	vec4[3](vec4( mySize/3, 5*mySize/3, 0, 1.0),								\n\
-													vec4( 2*mySize/3, 4*mySize/3, 0, 1.0),								\n\
-													vec4( 2*mySize/3, mySize, -mySize/3, 1.0));								\n\
-				for (int i = 0; i < 3; ++i) {																	\n\
-					if(localRot)																				\n\
-						gl_Position = rotation * (vertices30[i]  + truePos);									\n\
-					else																						\n\
-						gl_Position = (rotation * (vertices30[i]-fix))  + truePos;									\n\
-					gl_PrimitiveID = 1;\n\
+						gl_Position = (rotation * (vertices29[i]-fix))  + truePos;								\n\
+					gl_PrimitiveID = 3;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
@@ -1247,10 +1203,10 @@ namespace MyFirstShader {
 						} \n\
 				}\n\
 				else{	\n\
-					vec4 colors[4] = vec4[4](vec4(1.0,0.25,0.1,1.0),\n\	//0\n\ //cuadrados\n\
-													vec4(0.1,0.1,0.1,1.0),\n\	//1\n\
+					vec4 colors[4] = vec4[4](vec4(1.0,1.0,1.0,1.0),\n\	//0\n\ //cuadrados\n\
+													vec4(0.0,0.0,0.0,1.0),\n\	//1\n\
 													vec4(0.95,1.0,0.0,1.0),\n\	//2\n\
-													vec4(1.0,1.0,0.6,1.0));\n\	//3\n\
+													vec4(1.0,0.0,0.0,1.0));\n\	//3\n\
 					color=colors[gl_PrimitiveID];\n\
 				}\n\
 			}"
