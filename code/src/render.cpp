@@ -97,7 +97,7 @@ namespace ej5 {
 	bool Ejercicio5;
 }
 
-namespace j6a {
+namespace ej6a {
 	int octoAmount = 17;
 
 	glm::vec3* pos = new glm::vec3[octoAmount]{ { 0, 0, 0 },
@@ -118,6 +118,7 @@ namespace j6a {
 												{ 0.667, -0.667, -0.667 },
 												{ -0.667, -0.667, -0.667 }
 	};
+	bool Ejercicio5;
 }
 
 ////////////////
@@ -1482,10 +1483,10 @@ namespace MyFirstShader {
 
 			float mySize = 1;
 
-			for (int i = 0; i < /*ej2::octoAmount*/1; ++i) {
-				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)&ej2::pos[i]);
+			for (int i = 0; i < ej6a::octoAmount; ++i) {
+				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)&ej6a::pos[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "mySize"), (GLfloat)mySize);
-				glUniform1i(glGetUniformLocation(myRenderProgram[3], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
+				glUniform1i(glGetUniformLocation(myRenderProgram[3], "Ejercicio5"), (GLboolean)ej6a::Ejercicio5);
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "time"), (GLfloat)currentTime);
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "scale"), 1, GL_FALSE, glm::value_ptr(scale));
