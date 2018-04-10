@@ -868,7 +868,7 @@ namespace MyFirstShader {
 			uniform mat4 rotation;																					\n\
 			uniform bool localRot;																					\n\
 			layout(triangles) in;																					\n\
-			layout(triangle_strip, max_vertices = 136) out;															\n\
+			layout(triangle_strip, max_vertices = 200) out;															\n\
 			void main(){																							\n\
 			vec4 vertices1_1[12] =	vec4[12](		vec4( mySize/2, mySize/2, mySize/2, 1.0),	/*caraD*/			\n\
 													vec4( mySize/2, mySize/2, -mySize/2, 1.0),						\n\
@@ -1189,6 +1189,46 @@ namespace MyFirstShader {
 						EndPrimitive();																				\n\
 				}																									\n\
 																													\n\
+			vec4 vertices7_1[12] = vec4[12](vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),	/*caraD*/				\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),							\n\
+											vec4(mySize / 2, mySize / 2,mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),	/*caraC*/				\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),		/*caraI*/		\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0));						\n\
+			vec4 vertices7_2[12] = vec4[12](vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),	/*caraD*/				\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),							\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2,		0, mySize / 2, 1.0),	/*caraC*/				\n\
+											vec4(mySize / 2, mySize / 2,		0, 1.0),						\n\
+											vec4(		0, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2,		0, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),		/*caraI*/		\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0));						\n\
+			for (int j = 1; j<2; ++j) {																				\n\
+					for (int i = 0; i < 4; ++i) {																	\n\
+					vec4 localVec;																					\n\
+					if(progress<0.5)																				\n\
+						localVec=((1-progress*2)*vertices7_1[i+j*4]+progress*2*vertices7_2[i+j*4]);					\n\
+					else																							\n\
+						localVec=vertices7_2[i+j*4];\n\
+							if (localRot)																			\n\
+								gl_Position = (rotation * (localVec + truePos));						\n\
+							else																					\n\
+								gl_Position = (rotation * (localVec)) + truePos;						\n\
+								gl_PrimitiveID = 3;																	\n\
+								EmitVertex();																		\n\
+					}																								\n\
+						EndPrimitive();																				\n\
+				}																									\n\
 			}																										\n\
 			"
 		};
@@ -1203,7 +1243,7 @@ namespace MyFirstShader {
 				const vec4 colors[4] = vec4[4](	vec4(0.90,0.0,0.13,1.0),\n\
 												vec4(0.80,0.9,0.13,1.0),\n\
 												vec4(0.1,0.41,0.83,1.0),\n\
-												vec4(0.14,0.2,0.829,1.0));\n\
+												vec4(0.14,0.8,0.19,1.0));\n\
 				color=colors[gl_PrimitiveID];\n\
 			}"
 		};

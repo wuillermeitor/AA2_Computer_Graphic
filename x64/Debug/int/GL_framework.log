@@ -14,18 +14,18 @@ c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(8
 c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(811): warning C4129: '	': unrecognized character escape sequence
 c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(812): warning C4129: '	': unrecognized character escape sequence
 c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(813): warning C4129: '	': unrecognized character escape sequence
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1251): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1270): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1277): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1284): warning C4305: '=': truncation from 'double' to 'float'
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1290): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1349): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1387): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1432): warning C4305: 'initializing': truncation from 'double' to 'float'
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1478): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1496): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1501): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1506): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1291): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1310): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1317): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1324): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1330): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1389): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1427): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1472): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1518): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1536): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1541): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\alexbalasteguigaya\documents\aa2_computer_graphic\code\src\render.cpp(1546): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
   GL_framework.vcxproj -> C:\Users\alexbalasteguigaya\Documents\AA2_Computer_Graphic\x64\Debug\GL_framework.exe
   GL_framework.vcxproj -> C:\Users\alexbalasteguigaya\Documents\AA2_Computer_Graphic\x64\Debug\GL_framework.pdb (Partial PDB)
   0 File(s) copied
