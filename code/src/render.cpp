@@ -1189,47 +1189,374 @@ namespace MyFirstShader {
 						EndPrimitive();																				\n\
 				}																									\n\
 																													\n\
-			vec4 vertices7_1[12] = vec4[12](vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),	/*caraD*/				\n\
+			vec4 vertices7_1[10] = vec4[10](vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),	/*caraD*/				\n\
 											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),							\n\
 											vec4(mySize / 2, mySize / 2,mySize / 2, 1.0),						\n\
-											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
 											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),	/*caraC*/				\n\
 											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
 											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
 											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
 											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),		/*caraI*/		\n\
 											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
-											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
 											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0));						\n\
-			vec4 vertices7_2[12] = vec4[12](vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),	/*caraD*/				\n\
-											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),							\n\
-											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
-											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+			vec4 vertices7_2[10] = vec4[10](vec4(mySize / 2,		0, mySize / 2, 1.0),	/*caraD*/			\n\
+											vec4(mySize / 2, mySize / 2,		0, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2,		0, 1.0),						\n\
 											vec4(mySize / 2,		0, mySize / 2, 1.0),	/*caraC*/				\n\
 											vec4(mySize / 2, mySize / 2,		0, 1.0),						\n\
-											vec4(		0, mySize / 2, mySize / 2, 1.0),						\n\
 											vec4(mySize / 2,		0, mySize / 2, 1.0),						\n\
-											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),		/*caraI*/		\n\
-											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
-											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
-											vec4(mySize / 2, mySize / 2, mySize / 2, 1.0));						\n\
-			for (int j = 1; j<2; ++j) {																				\n\
-					for (int i = 0; i < 4; ++i) {																	\n\
-					vec4 localVec;																					\n\
-					if(progress<0.5)																				\n\
-						localVec=((1-progress*2)*vertices7_1[i+j*4]+progress*2*vertices7_2[i+j*4]);					\n\
-					else																							\n\
-						localVec=vertices7_2[i+j*4];\n\
-							if (localRot)																			\n\
-								gl_Position = (rotation * (localVec + truePos));						\n\
-							else																					\n\
-								gl_Position = (rotation * (localVec)) + truePos;						\n\
-								gl_PrimitiveID = 3;																	\n\
-								EmitVertex();																		\n\
-					}																								\n\
-						EndPrimitive();																				\n\
-				}																									\n\
-			}																										\n\
+											vec4(		  0, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2,		0, mySize / 2, 1.0),	/*caraI*/			\n\
+											vec4(		0, mySize / 2, mySize/2, 1.0),						\n\
+											vec4(		0, mySize / 2, mySize/2, 1.0));						\n\
+			vec4 vertices7_3[10] = vec4[10](vec4(mySize / 2,		  0,		  0, 1.0),	/*caraD*/				\n\
+											vec4(mySize / 2, 		  0,		  0, 1.0),							\n\
+											vec4(		  0, mySize / 2,		  0, 1.0),					\n\
+											vec4(mySize / 2,		  0,		  0, 1.0),	/*caraC*/				\n\
+											vec4(		  0, mySize / 2,  		  0, 1.0),						\n\
+											vec4(		  0,		  0,   mySize/2, 1.0),						\n\
+											vec4(		  0, mySize / 2,  		  0, 1.0),						\n\
+											vec4(		0,		  0, mySize/2, 1.0),	/*caraI*/				\n\
+											vec4(		0, mySize/2,		  0, 1.0),							\n\
+											vec4(		0,		  0, mySize/2, 1.0));						\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices7_1[i]+progress*2*vertices7_2[i]);							\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices7_2[i]+(progress*2-1)*vertices7_3[i]);						\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 3;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices7_1[i+3]+progress*2*vertices7_2[i+3]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices7_2[i+3]+(progress*2-1)*vertices7_3[i+3]);					\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 3;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices7_1[i+7]+progress*2*vertices7_2[i+7]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices7_2[i+7]+(progress*2-1)*vertices7_3[i+7]);					\n\
+						if (localRot)																			\n\
+							gl_Position = (rotation * (localVec + truePos));						\n\
+						else																					\n\
+							gl_Position = (rotation * (localVec)) + truePos;						\n\
+							gl_PrimitiveID = 3;																	\n\
+							EmitVertex();																		\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+																												\n\
+																												\n\
+			vec4 vertices8_1[10] = vec4[10](vec4(-mySize / 2, mySize / 2, mySize / 2, 1.0),	/*caraD*/				\n\
+											vec4(-mySize / 2, mySize / 2, mySize / 2, 1.0),							\n\
+											vec4(-mySize / 2, mySize / 2,mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, mySize / 2, 1.0),	/*caraC*/				\n\
+											vec4(-mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, mySize / 2, 1.0),		/*caraI*/		\n\
+											vec4(-mySize / 2, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, mySize / 2, 1.0));						\n\
+			vec4 vertices8_2[10] = vec4[10](vec4(-mySize / 2,		0, mySize / 2, 1.0),	/*caraD*/			\n\
+											vec4(-mySize / 2, mySize / 2,		0, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2,		0, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2,		0, 1.0),	/*caraC*/				\n\
+											vec4(-mySize / 2,		0, mySize / 2, 1.0),						\n\
+											vec4(		  0, mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2,		0, mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2,		0, mySize / 2, 1.0),	/*caraI*/			\n\
+											vec4(		0, mySize / 2, mySize/2, 1.0),						\n\
+											vec4(		0, mySize / 2, mySize/2, 1.0));						\n\
+			vec4 vertices8_3[10] = vec4[10](vec4(-mySize / 2,		  0,		  0, 1.0),	/*caraD*/				\n\
+											vec4(		  0, mySize / 2,		  0, 1.0),							\n\
+											vec4(-mySize / 2, 		  0,		  0, 1.0),				\n\
+											vec4(		  0, mySize / 2,  		  0, 1.0),	/*caraC*/				\n\
+											vec4(-mySize / 2,		  0,		  0, 1.0),					\n\
+											vec4(		  0, mySize / 2,  		  0, 1.0),					\n\
+											vec4(		  0,		  0,   mySize/2, 1.0),						\n\
+											vec4(		0,		  0, mySize/2, 1.0),	/*caraI*/				\n\
+											vec4(		0,		  0, mySize/2, 1.0),							\n\
+											vec4(		0, mySize/2,		  0, 1.0));						\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices8_1[i]+progress*2*vertices8_2[i]);							\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices8_2[i]+(progress*2-1)*vertices8_3[i]);						\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 4;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices8_1[i+3]+progress*2*vertices8_2[i+3]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices8_2[i+3]+(progress*2-1)*vertices8_3[i+3]);					\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 4;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices8_1[i+7]+progress*2*vertices8_2[i+7]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices8_2[i+7]+(progress*2-1)*vertices8_3[i+7]);					\n\
+						if (localRot)																			\n\
+							gl_Position = (rotation * (localVec + truePos));						\n\
+						else																					\n\
+							gl_Position = (rotation * (localVec)) + truePos;						\n\
+							gl_PrimitiveID = 4;																	\n\
+							EmitVertex();																		\n\
+				}																								\n\
+					EndPrimitive();																				"
+					"																								\n\
+																													\n\
+			vec4 vertices9_1[10] = vec4[10](vec4(mySize / 2, mySize / 2, -mySize / 2, 1.0),	/*caraD*/				\n\
+											vec4(mySize / 2, mySize / 2, -mySize / 2, 1.0),							\n\
+											vec4(mySize / 2, mySize / 2,-mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, -mySize / 2, 1.0),	/*caraC*/				\n\
+											vec4(mySize / 2, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, -mySize / 2, 1.0),		/*caraI*/		\n\
+											vec4(mySize / 2, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2, -mySize / 2, 1.0));						\n\
+			vec4 vertices9_2[10] = vec4[10](vec4(mySize / 2,		0, -mySize / 2, 1.0),	/*caraD*/			\n\
+											vec4(mySize / 2, mySize / 2,		0, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2,		0, 1.0),						\n\
+											vec4(mySize / 2, mySize / 2,		0, 1.0),	/*caraC*/				\n\
+											vec4(mySize / 2,		0, -mySize / 2, 1.0),						\n\
+											vec4(		  0, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(mySize / 2,		0, -mySize / 2, 1.0),						\n\
+											vec4(mySize / 2,		0, -mySize / 2, 1.0),	/*caraI*/			\n\
+											vec4(		0, mySize / 2, -mySize/2, 1.0),						\n\
+											vec4(		0, mySize / 2, -mySize/2, 1.0));						\n\
+			vec4 vertices9_3[10] = vec4[10](vec4(mySize / 2,		  0,		  0, 1.0),	/*caraD*/				\n\
+											vec4(		  0, mySize / 2,		  0, 1.0),							\n\
+											vec4(mySize / 2,		  0,		  0, 1.0),					\n\
+											vec4(		  0, mySize / 2,  		  0, 1.0),	/*caraC*/				\n\
+											vec4(mySize / 2,		  0,		  0, 1.0),						\n\
+											vec4(		  0, mySize / 2,  		  0, 1.0),					\n\
+											vec4(		  0,		  0,   -mySize/2, 1.0),						\n\
+											vec4(		0,		  0, -mySize/2, 1.0),	/*caraI*/				\n\
+											vec4(		0,		  0, -mySize/2, 1.0),							\n\
+											vec4(		0, mySize/2,		  0, 1.0));						\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices9_1[i]+progress*2*vertices9_2[i]);							\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices9_2[i]+(progress*2-1)*vertices9_3[i]);						\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 4;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices9_1[i+3]+progress*2*vertices9_2[i+3]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices9_2[i+3]+(progress*2-1)*vertices9_3[i+3]);					\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 4;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices9_1[i+7]+progress*2*vertices9_2[i+7]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices9_2[i+7]+(progress*2-1)*vertices9_3[i+7]);					\n\
+						if (localRot)																			\n\
+							gl_Position = (rotation * (localVec + truePos));						\n\
+						else																					\n\
+							gl_Position = (rotation * (localVec)) + truePos;						\n\
+							gl_PrimitiveID = 4;																	\n\
+							EmitVertex();																		\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+																												\n\
+			vec4 vertices10_1[10] = vec4[10](vec4(-mySize / 2, mySize / 2, -mySize / 2, 1.0),	/*caraD*/				\n\
+											vec4(-mySize / 2, mySize / 2, -mySize / 2, 1.0),							\n\
+											vec4(-mySize / 2, mySize / 2,-mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, -mySize / 2, 1.0),	/*caraC*/				\n\
+											vec4(-mySize / 2, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, -mySize / 2, 1.0),		/*caraI*/		\n\
+											vec4(-mySize / 2, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2, -mySize / 2, 1.0));						\n\
+			vec4 vertices10_2[10] = vec4[10](vec4(-mySize / 2,		0, -mySize / 2, 1.0),	/*caraD*/			\n\
+											vec4(-mySize / 2, mySize / 2,		0, 1.0),						\n\
+											vec4(-mySize / 2, mySize / 2,		0, 1.0),						\n\
+											vec4(-mySize / 2,		0, -mySize / 2, 1.0),	/*caraC*/				\n\
+											vec4(-mySize / 2, mySize / 2,		0, 1.0),						\n\
+											vec4(-mySize / 2,		0, -mySize / 2, 1.0),						\n\
+											vec4(		  0, mySize / 2, -mySize / 2, 1.0),						\n\
+											vec4(-mySize / 2,		0, -mySize / 2, 1.0),	/*caraI*/			\n\
+											vec4(		0, mySize / 2, -mySize/2, 1.0),						\n\
+											vec4(		0, mySize / 2, -mySize/2, 1.0));						\n\
+			vec4 vertices10_3[10] = vec4[10](vec4(-mySize / 2,		  0,		  0, 1.0),	/*caraD*/				\n\
+											vec4(-mySize / 2, 		  0,		  0, 1.0),							\n\
+											vec4(		  0, mySize / 2,		  0, 1.0),					\n\
+											vec4(-mySize / 2,		  0,		  0, 1.0),	/*caraC*/				\n\
+											vec4(		  0, mySize / 2,  		  0, 1.0),						\n\
+											vec4(		  0,		  0,   -mySize/2, 1.0),						\n\
+											vec4(		  0, mySize / 2,  		  0, 1.0),						\n\
+											vec4(		0,		  0, -mySize/2, 1.0),	/*caraI*/				\n\
+											vec4(		0, mySize/2,		  0, 1.0),							\n\
+											vec4(		0,		  0, -mySize/2, 1.0));						\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices10_1[i]+progress*2*vertices10_2[i]);							\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices10_2[i]+(progress*2-1)*vertices10_3[i]);						\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 3;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices10_1[i+3]+progress*2*vertices10_2[i+3]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices10_2[i+3]+(progress*2-1)*vertices10_3[i+3]);					\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 3;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices10_1[i+7]+progress*2*vertices10_2[i+7]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices10_2[i+7]+(progress*2-1)*vertices10_3[i+7]);					\n\
+						if (localRot)																			\n\
+							gl_Position = (rotation * (localVec + truePos));						\n\
+						else																					\n\
+							gl_Position = (rotation * (localVec)) + truePos;						\n\
+							gl_PrimitiveID = 3;																	\n\
+							EmitVertex();																		\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+																												\n\
+			vec4 vertices11_1[10] = vec4[10](vec4(mySize / 2, -mySize / 2, mySize / 2, 1.0),	/*caraD*/				\n\
+											vec4(mySize / 2, -mySize / 2, mySize / 2, 1.0),							\n\
+											vec4(mySize / 2, -mySize / 2,mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, -mySize / 2, mySize / 2, 1.0),	/*caraC*/				\n\
+											vec4(mySize / 2, -mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, -mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, -mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, -mySize / 2, mySize / 2, 1.0),		/*caraI*/		\n\
+											vec4(mySize / 2, -mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2, -mySize / 2, mySize / 2, 1.0));						\n\
+			vec4 vertices11_2[10] = vec4[10](vec4(mySize / 2,		0, mySize / 2, 1.0),	/*caraD*/			\n\
+											vec4(mySize / 2, -mySize / 2,		0, 1.0),						\n\
+											vec4(mySize / 2, -mySize / 2,		0, 1.0),						\n\
+											vec4(mySize / 2,		0, mySize / 2, 1.0),	/*caraC*/				\n\
+											vec4(mySize / 2, -mySize / 2,		0, 1.0),						\n\
+											vec4(mySize / 2,		0, mySize / 2, 1.0),						\n\
+											vec4(		  0, -mySize / 2, mySize / 2, 1.0),						\n\
+											vec4(mySize / 2,		0, mySize / 2, 1.0),	/*caraI*/			\n\
+											vec4(		0, -mySize / 2, mySize/2, 1.0),						\n\
+											vec4(		0, -mySize / 2, mySize/2, 1.0));						\n\
+			vec4 vertices11_3[10] = vec4[10](vec4(mySize / 2,		  0,		  0, 1.0),	/*caraD*/				\n\
+											vec4(mySize / 2, 		  0,		  0, 1.0),							\n\
+											vec4(		  0, -mySize / 2,		  0, 1.0),					\n\
+											vec4(mySize / 2,		  0,		  0, 1.0),	/*caraC*/				\n\
+											vec4(		  0, -mySize / 2,  		  0, 1.0),						\n\
+											vec4(		  0,		  0,   mySize/2, 1.0),						\n\
+											vec4(		  0, -mySize / 2,  		  0, 1.0),						\n\
+											vec4(		0,		  0, mySize/2, 1.0),	/*caraI*/				\n\
+											vec4(		0, -mySize/2,		  0, 1.0),							\n\
+											vec4(		0,		  0, mySize/2, 1.0));						\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices11_1[i]+progress*2*vertices11_2[i]);							\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices11_2[i]+(progress*2-1)*vertices1_3[i]);						\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 4;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices11_1[i+3]+progress*2*vertices11_2[i+3]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices11_2[i+3]+(progress*2-1)*vertices11_3[i+3]);					\n\
+				if (localRot)																					\n\
+					gl_Position = (rotation * (localVec + truePos));											\n\
+				else																							\n\
+					gl_Position = (rotation * (localVec)) + truePos;											\n\
+					gl_PrimitiveID = 4;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+				for (int i = 0; i < 3; ++i) {																	\n\
+				vec4 localVec;																					\n\
+				if(progress<0.5)																				\n\
+					localVec=((1-progress*2)*vertices11_1[i+7]+progress*2*vertices11_2[i+7]);						\n\
+				else																							\n\
+					localVec=((2-progress*2)*vertices11_2[i+7]+(progress*2-1)*vertices11_3[i+7]);					\n\
+						if (localRot)																			\n\
+							gl_Position = (rotation * (localVec + truePos));						\n\
+						else																					\n\
+							gl_Position = (rotation * (localVec)) + truePos;						\n\
+							gl_PrimitiveID = 4;																	\n\
+							EmitVertex();																		\n\
+				}																								\n\
+					EndPrimitive();																				\n\
+																												\n\
+			}																									\n\
 			"
 		};
 
@@ -1240,10 +1567,11 @@ namespace MyFirstShader {
 			out vec4 color;\n\
 			\n\
 			void main() {\n\
-				const vec4 colors[4] = vec4[4](	vec4(0.90,0.0,0.13,1.0),\n\
+				const vec4 colors[5] = vec4[5](	vec4(0.90,0.0,0.13,1.0),\n\
 												vec4(0.80,0.9,0.13,1.0),\n\
 												vec4(0.1,0.41,0.83,1.0),\n\
-												vec4(0.14,0.8,0.19,1.0));\n\
+												vec4(0.14,0.8,0.19,1.0),\n\
+												vec4(0.684,0.03,0.89,1.0));\n\
 				color=colors[gl_PrimitiveID];\n\
 			}"
 		};
@@ -1512,7 +1840,7 @@ namespace MyFirstShader {
 		else if (keyboardState[SDL_SCANCODE_7]) {
 			RV::_projection= glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
 			glUseProgram(myRenderProgram[2]);
-			float mySize = 1;
+			float mySize = 5;
 			glm::vec3 pos{ 0, 5, 0 };
 			bool localRotation = false;
 			float progress = (sin(currentTime)+1)/2;
