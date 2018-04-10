@@ -905,7 +905,7 @@ namespace MyFirstShader {
 						gl_Position = (rotation * (vertices[i]  + truePos));									\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 0;																			\n\
+					gl_PrimitiveID = 1;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
@@ -918,7 +918,7 @@ namespace MyFirstShader {
 						gl_Position = rotation * (vertices2[i]  + truePos);										\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices2[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 0;																			\n\
+					gl_PrimitiveID = 1;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
@@ -931,7 +931,7 @@ namespace MyFirstShader {
 						gl_Position = rotation * (vertices3[i]  + truePos);										\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices3[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 0;																			\n\
+					gl_PrimitiveID = 1;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
@@ -944,7 +944,7 @@ namespace MyFirstShader {
 						gl_Position = rotation * (vertices4[i]  + truePos);										\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices4[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 0;																			\n\
+					gl_PrimitiveID = 1;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
@@ -957,7 +957,7 @@ namespace MyFirstShader {
 						gl_Position = rotation * (vertices5[i]  + truePos);										\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices5[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 0;																			\n\
+					gl_PrimitiveID = 1;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
@@ -970,7 +970,7 @@ namespace MyFirstShader {
 						gl_Position = rotation * (vertices6[i]  + truePos);										\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices6[i]-fix))  + truePos;								\n\
-					gl_PrimitiveID = 0;																			\n\
+					gl_PrimitiveID = 1;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
@@ -1495,7 +1495,7 @@ namespace MyFirstShader {
 
 			float mySize = 1;
 
-			for (int i = 0; i < /*ej6a::octoAmount*/1; ++i) {
+			for (int i = 0; i < ej6a::octoAmount; ++i) {
 				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)&ej6a::pos[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "mySize"), (GLfloat)mySize);
 				glUniform1i(glGetUniformLocation(myRenderProgram[3], "Ejercicio5"), (GLboolean)ej6a::Ejercicio5);
