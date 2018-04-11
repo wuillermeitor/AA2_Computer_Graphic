@@ -806,6 +806,13 @@ namespace MyFirstShader {
 						color=colors[gl_PrimitiveID];\n\
 						} \n\
 				}\n\
+				else{	\n\
+					vec4 colors[4] = vec4[4](vec4(1.0,0.25,0.1,1.0),\n\	//0\n\ //cuadrados\n\
+													vec4(0.1,0.1,0.1,1.0),\n\	//1\n\
+													vec4(0.95,1.0,0.0,1.0),\n\	//2\n\
+													vec4(1.0,1.0,0.6,1.0));\n\	//3\n\
+					color=colors[gl_PrimitiveID];\n\
+				}\n\
 			}"
 		};
 
