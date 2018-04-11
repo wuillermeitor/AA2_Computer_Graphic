@@ -1,30 +1,4 @@
-﻿  render.cpp
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(795): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(795): warning C4129: ' ': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(796): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(797): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(798): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(802): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(802): warning C4129: ' ': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(803): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(804): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(805): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(810): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(810): warning C4129: ' ': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(811): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(812): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(813): warning C4129: '	': secuencia de escape de carácter no reconocida
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(1837): warning C4244: 'argumento': conversión de 'time_t' a 'unsigned int'; posible pérdida de datos
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(1856): warning C4305: '=': truncamiento de 'double' a 'float'
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(1863): warning C4305: '=': truncamiento de 'double' a 'float'
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(1870): warning C4305: '=': truncamiento de 'double' a 'float'
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(1876): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(1935): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(1973): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(2018): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(2082): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(2087): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-d:\users\abala\documents\sourcetree\aa2_computer_graphic\code\src\render.cpp(2092): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-  GL_framework.vcxproj -> D:\Users\abala\Documents\SourceTree\AA2_Computer_Graphic\x64\Debug\GL_framework.exe
-  0 archivo(s) copiado(s)
-  0 archivo(s) copiado(s)
+﻿  GL_framework.vcxproj -> C:\Users\alexbalasteguigaya\Documents\AA2_Computer_Graphic\x64\Debug\GL_framework.exe
+  GL_framework.vcxproj -> C:\Users\alexbalasteguigaya\Documents\AA2_Computer_Graphic\x64\Debug\GL_framework.pdb (Partial PDB)
+  0 File(s) copied
+  0 File(s) copied

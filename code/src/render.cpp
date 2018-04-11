@@ -2061,7 +2061,7 @@ namespace MyFirstShader {
 			float mySize = 5;
 			glm::vec3 pos{ 0, 5, 0 };
 			bool localRotation = false;
-			float progress = glm::clamp(static_cast<float>((sin(currentTime)+1)/2), 0.f, 1.f);
+			float progress = 0.833*glm::clamp(static_cast<float>((sin(currentTime)+1)/2), 0.f, 1.f);
 
 			glUniform1f(glGetUniformLocation(myRenderProgram[2], "mySize"), (GLfloat)mySize);
 			glUniform1f(glGetUniformLocation(myRenderProgram[2], "progress"), (GLfloat)progress);
