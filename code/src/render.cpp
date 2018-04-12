@@ -49,25 +49,12 @@ namespace ej1 {
 }
 
 namespace ej2 {
-	int octoAmount = 17;
-
-	glm::vec3* pos = new glm::vec3[octoAmount]{ { 0, 0, 0 },
-	{ 1.333, 0, 0 },
-	{ -0.667, 0.667, -0.667 },
-	{ -1.333, 0, 0 },
-	{ 0, 1.333, 0 },
-	{ 0, -1.333, 0 },
-	{ -0.667, 0.667, 0.667 },
-	{ 0.667, 0.667, -0.667 },
-	{ 1.333, 1.333, 0 },
-	{ 1.333, -1.333, 0 },
-	{ -1.333, 1.333, 0 },
-	{ -1.333, -1.333, 0 },
-	{ 0.667, 0.667, 0.667 },
-	{ 0.667, -0.667, 0.667 },
-	{ -0.667, -0.667, 0.667 },
-	{ 0.667, -0.667, -0.667 },
-	{ -0.667, -0.667, -0.667 }
+	int octoAmount = 4;
+	float mySize = 1.334;
+	glm::vec3* pos = new glm::vec3[octoAmount]{		{ 0, 0, -mySize/2 },
+													{ 0, 0, mySize / 2 },
+													{ mySize/2, -mySize / 2, 0 },
+													{ -mySize / 2, -mySize / 2, 0 }
 	};
 }
 
@@ -2729,17 +2716,22 @@ namespace MyFirstShader {
 		else if (keyboardState[SDL_SCANCODE_2]) {
 			RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
 			glUseProgram(myRenderProgram[2]);
-			float mySize = 5;
-			glm::vec3 pos{ 0, 5, 0 };
-			bool localRotation = false;
-			float progress = 0.833*glm::clamp(static_cast<float>((sin(currentTime) + 1) / 2), 0.f, 1.f);
 
-			glUniform1f(glGetUniformLocation(myRenderProgram[2], "mySize"), (GLfloat)mySize);
-			glUniform1f(glGetUniformLocation(myRenderProgram[2], "progress"), (GLfloat)progress);
-			glUniform3fv(glGetUniformLocation(myRenderProgram[2], "pos"), 1, (GLfloat*)&pos);
-			glUniform1f(glGetUniformLocation(myRenderProgram[2], "localRot"), (GLboolean)localRotation);
-			glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[2], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
-			glDrawArrays(GL_TRIANGLES, 0, 3);
+			float mySize = ej2::mySize;
+
+			glm::vec3 pos{ 0, 5, 0 };
+			bool localRotation = true;
+			ej2::mySize = ((sin(currentTime) + 1) / 2)*1.5; //TOCAR ESTA LÍNEA
+			float progress = 0.75*glm::clamp(static_cast<float>((sin(currentTime) + 1) / 2), 0.f, 1.f);
+
+			for (int i = 0; i < ej2::octoAmount; ++i) {
+				glUniform1f(glGetUniformLocation(myRenderProgram[2], "mySize"), (GLfloat)mySize);
+				glUniform1f(glGetUniformLocation(myRenderProgram[2], "progress"), (GLfloat)progress);
+				glUniform3fv(glGetUniformLocation(myRenderProgram[2], "pos"), 1, (GLfloat*)&ej2::pos[i]);
+				glUniform1f(glGetUniformLocation(myRenderProgram[2], "localRot"), (GLboolean)localRotation);
+				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[2], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+				glDrawArrays(GL_TRIANGLES, 0, 3);
+			}
 			//RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
 
 			//bool localRotation = true;
