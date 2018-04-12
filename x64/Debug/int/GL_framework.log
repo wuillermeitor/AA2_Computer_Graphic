@@ -1,1 +1,57 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Platforms\x64\PlatformToolsets\v141\Toolset.targets(36,5): error MSB8036: No se encontró la versión del SDK de Windows 10.0.15063.0. Instale la versión requerida del SDK de Windows o cambie la versión del SDK en las páginas de propiedades de proyecto o haciendo clic con el botón derecho en la solución y seleccionando "Redestinar solución".
+﻿  render.cpp
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1213): warning C4129: '}': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1228): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1228): warning C4129: ' ': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1229): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1230): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1231): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1235): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1235): warning C4129: ' ': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1236): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1237): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1238): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1243): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1243): warning C4129: ' ': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1244): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1245): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(1246): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2592): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2592): warning C4129: ' ': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2593): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2594): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2595): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2599): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2599): warning C4129: ' ': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2600): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2601): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2602): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2607): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2607): warning C4129: ' ': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2608): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2609): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2610): warning C4129: '	': unrecognized character escape sequence
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2654): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2681): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2688): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2695): warning C4305: '=': truncation from 'double' to 'float'
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2701): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2735): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2774): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2813): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2860): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2959): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2964): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\guillermosanchezsanc\source\repos\aa2_computer_graphic\code\src\render.cpp(2969): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+     Creating library C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\GL_framework.lib and object C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\GL_framework.exp
+render_prims.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'render_prims.obj' or at 'C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\vc141.pdb'; linking object as if no debug info
+physics.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'physics.obj' or at 'C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\vc141.pdb'; linking object as if no debug info
+main.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'main.obj' or at 'C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\vc141.pdb'; linking object as if no debug info
+my_render_code.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'my_render_code.obj' or at 'C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\vc141.pdb'; linking object as if no debug info
+imgui_impl_sdl_gl3.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'imgui_impl_sdl_gl3.obj' or at 'C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\vc141.pdb'; linking object as if no debug info
+imgui_draw.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'imgui_draw.obj' or at 'C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\vc141.pdb'; linking object as if no debug info
+imgui_demo.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'imgui_demo.obj' or at 'C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\vc141.pdb'; linking object as if no debug info
+imgui.obj : warning LNK4099: PDB 'vc141.pdb' was not found with 'imgui.obj' or at 'C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\vc141.pdb'; linking object as if no debug info
+  GL_framework.vcxproj -> C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\GL_framework.exe
+  GL_framework.vcxproj -> C:\Users\guillermosanchezsanc\source\repos\AA2_Computer_Graphic\x64\Debug\GL_framework.pdb (Partial PDB)
+  0 File(s) copied
+  0 File(s) copied
