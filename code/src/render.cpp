@@ -2721,7 +2721,7 @@ namespace MyFirstShader {
 
 			glm::vec3 pos{ 0, 5, 0 };
 			bool localRotation = true;
-			ej2::mySize = ((sin(currentTime) + 1) / 2)*1.5; //TOCAR ESTA LÍNEA
+			ej2::mySize = ((sin(currentTime) + 1) / 2)*1.334/2+1.334/2; 
 			float progress = 0.75*glm::clamp(static_cast<float>((sin(currentTime) + 1) / 2), 0.f, 1.f);
 
 			for (int i = 0; i < ej2::octoAmount; ++i) {
