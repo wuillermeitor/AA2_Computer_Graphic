@@ -108,6 +108,30 @@ namespace ej6a {
 	bool Ejercicio5;
 }
 
+namespace ej6b {
+	int HoneyComb = 17;
+
+	glm::vec3* pos = new glm::vec3[HoneyComb]{ { 0, 0, 0 },
+												{ 1.333, 0, 0 },
+												{ -0.667, 0.667, -0.667 },
+												{ -1.333, 0, 0 },
+												{ 0, 1.333, 0 },
+												{ 0, -1.333, 0 },
+												{ -0.667, 0.667, 0.667 },
+												{ 0.667, 0.667, -0.667 },
+												{ 1.333, 1.333, 0 },
+												{ 1.333, -1.333, 0 },
+												{ -1.333, 1.333, 0 },
+												{ -1.333, -1.333, 0 },
+												{ 0.667, 0.667, 0.667 },
+												{ 0.667, -0.667, 0.667 },
+												{ -0.667, -0.667, 0.667 },
+												{ 0.667, -0.667, -0.667 },
+												{ -0.667, -0.667, -0.667 }
+	};
+
+}
+
 namespace ej9 {     //En veritat es el 7
 	int octoAmount = 17;
 
@@ -2909,6 +2933,67 @@ namespace MyFirstShader {
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "scale"), 1, GL_FALSE, glm::value_ptr(scale));
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "localRot"), (GLboolean)localRotation);
+				glDrawArrays(GL_LINES, 0, 3);
+			}
+		}
+		else if (keyboardState[SDL_SCANCODE_7]) {
+
+			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
+
+			ej5::Ejercicio5 = false;
+			ej9::Ejercicio9 = false;
+			bool localRotation = false;
+			float mySize = 0.1f;
+
+			glUseProgram(myRenderProgram[1]);
+			for (int i = 0; i < ej4::octoAmount; ++i) {
+
+				float max = 0.3;
+				glm::vec3 axis{ getRandomFloatBetween(0, max), getRandomFloatBetween(0, max), getRandomFloatBetween(0, max) };
+
+				float degrees = 1;
+
+
+				glm::mat4 rotationY = { cos(ej4::degRot[i].y * currentTime),	0.f, sin(ej4::degRot[i].y * currentTime), 0.f,
+					0.f, 1.f, 0.f, 0.f,
+					-sin(ej4::degRot[i].y * currentTime),	0.f, cos(ej4::degRot[i].y * currentTime),	0.f,
+					0.f, 0.f, 0.f, 1.f };
+
+				glm::mat4 rotationX = { 1,	0.f, 0.f, 0.f,
+					0.f, cos(ej4::degRot[i].x * currentTime), -sin(ej4::degRot[i].x * currentTime),	0.f,
+					0.f, sin(ej4::degRot[i].x * currentTime),	cos(ej4::degRot[i].x * currentTime),	0.f,
+					0.f, 0.f, 0.f, 1.f };
+
+				glm::mat4 rotationZ = { cos(ej4::degRot[i].z * currentTime), -sin(ej4::degRot[i].z * currentTime), 0.f, 0.f,
+					sin(ej4::degRot[i].z * currentTime), cos(ej4::degRot[i].z * currentTime),  0.f, 0.f,
+					0.f, 0.f, 1.f, 0.f,
+					0.f, 0.f, 0.f, 1.f };
+
+				glm::mat4 finalRot = rotationX * rotationY*rotationZ;
+
+
+				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej4::seeds[i]);
+				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej9::Ejercicio9);
+				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
+				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(finalRot));
+				glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
+				glDrawArrays(GL_TRIANGLES, 0, 3);
+				ej4::seeds[i] -= glm::vec3(0, 0.005f + ej4::speed*ej4::seedR[i], 0);
+			}
+			
+			bool localRotation2 = true;
+			glUseProgram(myRenderProgram[3]);
+			
+			float mySize2 = 0.1f;
+
+			for (int i = 0; i < ej6b::HoneyComb; ++i) {
+				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)&ej6b::pos[i]);
+				glUniform1f(glGetUniformLocation(myRenderProgram[3], "mySize"), (GLfloat)mySize2);
+				glUniform1f(glGetUniformLocation(myRenderProgram[3], "time"), (GLfloat)currentTime);
+				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+				glUniform1f(glGetUniformLocation(myRenderProgram[3], "localRot"), (GLboolean)localRotation2);
 				glDrawArrays(GL_LINES, 0, 3);
 			}
 		}
