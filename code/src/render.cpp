@@ -110,7 +110,14 @@ namespace ej6a {
 
 namespace ej7 {
 	int octoAmount = 17;
-
+	glm::vec3 voronoi;
+	glm::vec3 voronoi1;
+	glm::vec3 voronoi2;
+	glm::vec3 voronoi3;
+	glm::vec3 voronoi4;
+	glm::vec3 voronoi5;
+	glm::vec3 voronoi6;
+	glm::vec3 voronoi7;
 	glm::vec3* pos = new glm::vec3[octoAmount]{ { 0, 0, 0 },
 	{ 1.333, 0, 0 },
 	{ -0.667, 0.667, -0.667 },
@@ -1882,98 +1889,98 @@ namespace MyFirstShader {
 			uniform vec3 pos;																					\n\
 			uniform bool Ejercicio6;																			\n\
 			uniform bool Ejercicio7;																			\n\
-			uniform vec3 cubePos;														\n\
+			uniform vec3 cubePos;																				\n\
 			vec4 truePos=vec4(pos.x, pos.y, pos.z, 1);															\n\
-			vec4 cubeTruePos = vec4(cubePos.x, cubePos.y+1, cubePos.z,1);					\n\
+			vec4 cubeTruePos = vec4(cubePos.x, cubePos.y+1, cubePos.z,1);										\n\
 			vec4 fix= vec4(0, mySize, 0, 0);																	\n\
-			vec4 cubeFix= vec4(0, cubeSize,0,0);											\n\
+			vec4 cubeFix= vec4(0, cubeSize,0,0);																\n\
 			uniform mat4 rotation;																				\n\
-			uniform mat4 cubeRotation;													\n\
+			uniform mat4 cubeRotation;																			\n\
 			uniform mat4 scale;																					\n\
 			uniform bool localRot;																				\n\
 			layout(lines) in;																					\n\
 			layout(line_strip, max_vertices = 128) out;															\n\
 			void main() {																						\n\
 				if (Ejercicio7 ==  true && Ejercicio6 == false){												\n\
-				 vec4 vertices30[4] =	vec4[4](vec4( cubeSize,-cubeSize, cubeSize, 1.0),										\n\
-													vec4( cubeSize, cubeSize, cubeSize, 1.0),								\n\
-													vec4(-cubeSize,-cubeSize, cubeSize, 1.0),								\n\
-													vec4(-cubeSize, cubeSize, cubeSize, 1.0));								\n\
+				 vec4 vertices30[4] =	vec4[4](vec4( cubeSize,-cubeSize, cubeSize, 1.0),						\n\
+													vec4( cubeSize, cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize,-cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize, cubeSize, cubeSize, 1.0));					\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
-								if(localRot)																				\n\
-						gl_Position = (rotation * (vertices30[i]  + cubeTruePos));									\n\
+								if(localRot)																	\n\
+						gl_Position = (rotation * (vertices30[i]  + cubeTruePos));								\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices30[i]-cubeFix))  + cubeTruePos;								\n\
-					gl_PrimitiveID = 2;\n\
+						gl_Position = (rotation * (vertices30[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices31[4] =	vec4[4](vec4(-cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
-													vec4(-cubeSize, cubeSize, -cubeSize, 1.0),								\n\
-													vec4( cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
-													vec4( cubeSize, cubeSize, -cubeSize, 1.0));								\n\
+				 vec4 vertices31[4] =	vec4[4](vec4(-cubeSize,-cubeSize, -cubeSize, 1.0),						\n\
+													vec4(-cubeSize, cubeSize, -cubeSize, 1.0),					\n\
+													vec4( cubeSize,-cubeSize, -cubeSize, 1.0),					\n\
+													vec4( cubeSize, cubeSize, -cubeSize, 1.0));					\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
-							if(localRot)																				\n\
-						gl_Position = (rotation * (vertices31[i]  + cubeTruePos));									\n\
+							if(localRot)																		\n\
+						gl_Position = (rotation * (vertices31[i]  + cubeTruePos));								\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices31[i]-cubeFix))  + cubeTruePos;								\n\
-					gl_PrimitiveID = 2;\n\
+						gl_Position = (rotation * (vertices31[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices32[4] =	vec4[4](vec4( -cubeSize,-cubeSize, cubeSize, 1.0),								\n\
-													vec4( -cubeSize, cubeSize, cubeSize, 1.0),								\n\
-													vec4(-cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
-													vec4(-cubeSize, cubeSize, -cubeSize, 1.0));								\n\
+				 vec4 vertices32[4] =	vec4[4](vec4( -cubeSize,-cubeSize, cubeSize, 1.0),						\n\
+													vec4( -cubeSize, cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize,-cubeSize, -cubeSize, 1.0),					\n\
+													vec4(-cubeSize, cubeSize, -cubeSize, 1.0));					\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
-										if(localRot)																				\n\
-						gl_Position = (rotation * (vertices32[i]  + cubeTruePos));									\n\
+										if(localRot)															\n\
+						gl_Position = (rotation * (vertices32[i]  + cubeTruePos));								\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices32[i]-cubeFix))  + cubeTruePos;								\n\
-					gl_PrimitiveID = 2;\n\
+						gl_Position = (rotation * (vertices32[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				vec4 vertices33[4] =	vec4[4](vec4( cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
-													vec4( cubeSize, cubeSize, -cubeSize, 1.0),								\n\
-													vec4(cubeSize,-cubeSize, cubeSize, 1.0),								\n\
-													vec4(cubeSize, cubeSize, cubeSize, 1.0));								\n\
+				vec4 vertices33[4] =	vec4[4](vec4( cubeSize,-cubeSize, -cubeSize, 1.0),						\n\
+													vec4( cubeSize, cubeSize, -cubeSize, 1.0),					\n\
+													vec4(cubeSize,-cubeSize, cubeSize, 1.0),					\n\
+													vec4(cubeSize, cubeSize, cubeSize, 1.0));					\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
-										if(localRot)																				\n\
-						gl_Position = (rotation * (vertices33[i]  + cubeTruePos));									\n\
+										if(localRot)															\n\
+						gl_Position = (rotation * (vertices33[i]  + cubeTruePos));								\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices33[i]-cubeFix))  + cubeTruePos;								\n\
-					gl_PrimitiveID = 2;\n\
+						gl_Position = (rotation * (vertices33[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices34[4] =	vec4[4](vec4(cubeSize, cubeSize, cubeSize, 1.0),								\n\
-													vec4( cubeSize, cubeSize, -cubeSize, 1.0),								\n\
-													vec4(-cubeSize, cubeSize, cubeSize, 1.0),								\n\
-													vec4(-cubeSize, cubeSize, -cubeSize, 1.0));								\n\
+				 vec4 vertices34[4] =	vec4[4](vec4(cubeSize, cubeSize, cubeSize, 1.0),						\n\
+													vec4( cubeSize, cubeSize, -cubeSize, 1.0),					\n\
+													vec4(-cubeSize, cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize, cubeSize, -cubeSize, 1.0));					\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
-										if(localRot)																				\n\
-						gl_Position = (rotation * (vertices34[i]  + cubeTruePos));									\n\
+										if(localRot)															\n\
+						gl_Position = (rotation * (vertices34[i]  + cubeTruePos));								\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices34[i]-cubeFix))  + cubeTruePos;								\n\
-					gl_PrimitiveID = 2;\n\
+						gl_Position = (rotation * (vertices34[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices35[4] =	vec4[4](vec4( cubeSize, -cubeSize, -cubeSize, 1.0),								\n\
-													vec4( cubeSize, -cubeSize, cubeSize, 1.0),								\n\
-													vec4(-cubeSize, -cubeSize, -cubeSize, 1.0),								\n\
-													vec4(-cubeSize, -cubeSize, cubeSize, 1.0));								\n\
+				 vec4 vertices35[4] =	vec4[4](vec4( cubeSize, -cubeSize, -cubeSize, 1.0),						\n\
+													vec4( cubeSize, -cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize, -cubeSize, -cubeSize, 1.0),					\n\
+													vec4(-cubeSize, -cubeSize, cubeSize, 1.0));					\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
-							if(localRot)																				\n\
-						gl_Position = (rotation * (vertices35[i]  + cubeTruePos));									\n\
+							if(localRot)																		\n\
+						gl_Position = (rotation * (vertices35[i]  + cubeTruePos));								\n\
 					else																						\n\
-						gl_Position = (rotation * (vertices35[i]-cubeFix))  + cubeTruePos;								\n\
-					gl_PrimitiveID = 2;\n\
+						gl_Position = (rotation * (vertices35[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				}																		\n\
+				}																								\n\
 				vec4 vertices[4] =	vec4[4](	vec4( 0, mySize/3, -mySize/3, 1.0),								\n\
 												vec4( mySize/3, mySize/3, 0, 1.0),								\n\
 												vec4( 0, mySize/3, mySize/3, 1.0),								\n\
@@ -2604,11 +2611,55 @@ namespace MyFirstShader {
 				0.f, 0.f, 0.f, 1.f };
 
 			float mySize = 1;
-			float cubeSize = 0.05;
+			float cubeSize = 0.1;
+			ej7::voronoi = glm::vec3(fmod(currentTime, 0.125), fmod(currentTime, 0.125), fmod(currentTime, 0.125));
+			ej7::voronoi1 = glm::vec3(-fmod(currentTime, 0.125), fmod(currentTime, 0.125), fmod(currentTime, 0.125));
+			ej7::voronoi2 = glm::vec3(fmod(currentTime, 0.125), -fmod(currentTime, 0.125), fmod(currentTime, 0.125));
+			ej7::voronoi3 = glm::vec3(fmod(currentTime, 0.125), fmod(currentTime, 0.125), -fmod(currentTime, 0.125));
+			ej7::voronoi4 = glm::vec3(-fmod(currentTime, 0.125), -fmod(currentTime, 0.125), fmod(currentTime, 0.125));
+			ej7::voronoi5 = glm::vec3(fmod(currentTime, 0.125), -fmod(currentTime, 0.125), -fmod(currentTime, 0.125));
+			ej7::voronoi6 = glm::vec3(-fmod(currentTime, 0.125), fmod(currentTime, 0.125), -fmod(currentTime, 0.125));
+			ej7::voronoi7 = glm::vec3(-fmod(currentTime, 0.125), -fmod(currentTime, 0.125), -fmod(currentTime, 0.125));
+			glm::vec3 tmp[17] = { ej7::voronoi,
+			{ ej7::voronoi1 },
+			{ ej7::voronoi2 },
+			{ ej7::voronoi3 },
+			{ ej7::voronoi4 },
+			{ ej7::voronoi5 },
+			{ ej7::voronoi6 },
+			{ ej7::voronoi7 },
+			{ ej7::voronoi },
+			{ ej7::voronoi1 },
+			{ ej7::voronoi2 },
+			{ ej7::voronoi3 },
+			{ ej7::voronoi4 },
+			{ ej7::voronoi5 },
+			{ ej7::voronoi6 },
+			{ ej7::voronoi7 },
+			{ ej7::voronoi }
+			};
+
+			tmp[0] = ej7::voronoi + ej6a::pos[0];
+			tmp[1] = ej7::voronoi1 + ej6a::pos[1];
+			tmp[2] = ej7::voronoi2 + ej6a::pos[2];
+			tmp[3] = ej7::voronoi3 + ej6a::pos[3];
+			tmp[4] = ej7::voronoi4 + ej6a::pos[4];
+			tmp[5] = ej7::voronoi5 + ej6a::pos[5];
+			tmp[6] = ej7::voronoi6 + ej6a::pos[6];
+			tmp[7] = ej7::voronoi7 + ej6a::pos[7];
+			tmp[8] = ej7::voronoi + ej6a::pos[8];
+			tmp[9] = ej7::voronoi1 + ej6a::pos[9];
+			tmp[10] = ej7::voronoi2 + ej6a::pos[10];
+			tmp[11] = ej7::voronoi3 + ej6a::pos[11];
+			tmp[12] = ej7::voronoi4 + ej6a::pos[12];
+			tmp[13] = ej7::voronoi5 + ej6a::pos[13];
+			tmp[14] = ej7::voronoi6 + ej6a::pos[14];
+			tmp[15] = ej7::voronoi7 + ej6a::pos[15];
+			tmp[16] = ej7::voronoi + ej6a::pos[16];
 
 			for (int i = 0; i < ej6a::octoAmount; ++i) {
-				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)&ej6a::pos[i]);
-				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "cubePos"), 1, (GLfloat*)&ej6a::pos[i]);
+				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)(&tmp[i]));
+				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "cubePos"), 1, (GLfloat*)&tmp[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "mySize"), (GLfloat)mySize);
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "cubeSize"), (GLfloat)cubeSize);
 				glUniform1i(glGetUniformLocation(myRenderProgram[3], "Ejercicio6"), (GLboolean)ej6a::Ejercicio6);
