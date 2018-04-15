@@ -2717,7 +2717,6 @@ namespace MyFirstShader {
 	}
 
 	void myRenderCode(double currentTime) {
-
 		const Uint8* keyboardState = SDL_GetKeyboardState(NULL);
 		float deltaTime = currentTime - ej4::lastTime;
 
@@ -2995,7 +2994,8 @@ namespace MyFirstShader {
 				ej4::seeds[i] -= glm::vec3(0, 0.005f + ej4::speed*ej4::seedR[i], 0);
 
 				for (int j = 0; j < ej6b::HoneyComb;++j) {
-					if ((ej4::seeds[i].y <= ej6b::pos[j].y + 0.2 && ej4::seeds[i].y >= ej6b::pos[j].y - 0.2) && (ej4::seeds[i].x <= ej6b::pos[j].x + 0.2 && ej4::seeds[i].x >= ej6b::pos[j].x - 0.2)) {
+					if ((ej4::seeds[i].y <= ej6b::pos[j].y + 0.2 && ej4::seeds[i].y >= ej6b::pos[j].y - 0.2) 
+						&& (ej4::seeds[i].x <= ej6b::pos[j].x + 0.2 && ej4::seeds[i].x >= ej6b::pos[j].x - 0.2)) {
 						ej6b::samePos[i] = true;
 					}
 				}
@@ -3013,6 +3013,55 @@ namespace MyFirstShader {
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "localRot"), (GLboolean)localRotation2);
 				glDrawArrays(GL_LINES, 0, 3);
+			}
+		}
+		else if (keyboardState[SDL_SCANCODE_8]) {
+
+			RV::rota[0] = 1.6;
+			//hay que cambiar esto de la projection o algo, pero el rota está bien
+			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
+
+			ej5::Ejercicio5 = false;
+			ej9::Ejercicio9 = false;
+			bool localRotation = false;
+			float mySize = 0.1f;
+
+			glUseProgram(myRenderProgram[1]);
+			for (int i = 0; i < ej4::octoAmount; ++i) {
+
+				float max = 0.3;
+				glm::vec3 axis{ getRandomFloatBetween(0, max), getRandomFloatBetween(0, max), getRandomFloatBetween(0, max) };
+
+				float degrees = 1;
+
+
+				glm::mat4 rotationY = { cos(ej4::degRot[i].y * currentTime),	0.f, sin(ej4::degRot[i].y * currentTime), 0.f,
+					0.f, 1.f, 0.f, 0.f,
+					-sin(ej4::degRot[i].y * currentTime),	0.f, cos(ej4::degRot[i].y * currentTime),	0.f,
+					0.f, 0.f, 0.f, 1.f };
+
+				glm::mat4 rotationX = { 1,	0.f, 0.f, 0.f,
+					0.f, cos(ej4::degRot[i].x * currentTime), -sin(ej4::degRot[i].x * currentTime),	0.f,
+					0.f, sin(ej4::degRot[i].x * currentTime),	cos(ej4::degRot[i].x * currentTime),	0.f,
+					0.f, 0.f, 0.f, 1.f };
+
+				glm::mat4 rotationZ = { cos(ej4::degRot[i].z * currentTime), -sin(ej4::degRot[i].z * currentTime), 0.f, 0.f,
+					sin(ej4::degRot[i].z * currentTime), cos(ej4::degRot[i].z * currentTime),  0.f, 0.f,
+					0.f, 0.f, 1.f, 0.f,
+					0.f, 0.f, 0.f, 1.f };
+
+				glm::mat4 finalRot = rotationX * rotationY * rotationZ;
+
+
+				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej4::seeds[i]);
+				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej9::Ejercicio9);
+				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
+				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(finalRot));
+				glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
+				glDrawArrays(GL_TRIANGLES, 0, 3);
+				ej4::seeds[i] -= glm::vec3(0, 0.005f + ej4::speed*ej4::seedR[i], 0);
 			}
 		}
 		else if (keyboardState[SDL_SCANCODE_9]) {
@@ -3043,6 +3092,8 @@ namespace MyFirstShader {
 			}
 		}
 		else {
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
 			ej1::pos1 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
 			ej1::pos2 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
 
