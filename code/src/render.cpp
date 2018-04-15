@@ -1934,7 +1934,7 @@ namespace MyFirstShader {
 					EmitVertex();																				\n\
 				}																								\n\
 				EndPrimitive();																					\n\
-				 vec4 vertices33[4] =	vec4[4](vec4( cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
+				vec4 vertices33[4] =	vec4[4](vec4( cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
 													vec4( cubeSize, cubeSize, -cubeSize, 1.0),								\n\
 													vec4(cubeSize,-cubeSize, cubeSize, 1.0),								\n\
 													vec4(cubeSize, cubeSize, cubeSize, 1.0));								\n\
@@ -2006,7 +2006,7 @@ namespace MyFirstShader {
 												vec4( -mySize/3, mySize, 2*mySize/3, 1.0));						\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
-						gl_Position = rotation * (vertices3[i]  + cubeTruePos);										\n\
+						gl_Position = rotation * (vertices3[i]  + truePos);										\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices3[i]-fix))  + truePos;								\n\
 					gl_PrimitiveID = 1;																			\n\
