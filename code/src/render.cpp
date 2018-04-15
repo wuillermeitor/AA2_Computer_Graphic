@@ -110,24 +110,26 @@ namespace ej6a {
 
 namespace ej6b {
 	int HoneyComb = 17;
+	bool samePos[35] = { false };
+
 
 	glm::vec3* pos = new glm::vec3[HoneyComb]{ { 0, 0, 0 },
-												{ 1.333, 0, 0 },
-												{ -0.667, 0.667, -0.667 },
-												{ -1.333, 0, 0 },
-												{ 0, 1.333, 0 },
-												{ 0, -1.333, 0 },
-												{ -0.667, 0.667, 0.667 },
-												{ 0.667, 0.667, -0.667 },
-												{ 1.333, 1.333, 0 },
-												{ 1.333, -1.333, 0 },
-												{ -1.333, 1.333, 0 },
-												{ -1.333, -1.333, 0 },
-												{ 0.667, 0.667, 0.667 },
-												{ 0.667, -0.667, 0.667 },
-												{ -0.667, -0.667, 0.667 },
-												{ 0.667, -0.667, -0.667 },
-												{ -0.667, -0.667, -0.667 }
+												{ 1.333*75, 0, 0 },
+												{ -0.667 * 75, 0.667 * 75, -0.667 * 75 },
+												{ -1.333 * 75, 0, 0 },
+												{ 0, 1.333 * 75, 0 },
+												{ 0, -1.333 * 75, 0 },
+												{ -0.667 * 75, 0.667 * 75, 0.667 * 75 },
+												{ 0.667 * 75, 0.667 * 75, -0.667 * 75 },
+												{ 1.333 * 75, 1.333 * 75, 0 },
+												{ 1.333 * 75, -1.333 * 75, 0 },
+												{ -1.333 * 75, 1.333 * 75, 0 },
+												{ -1.333 * 75, -1.333 * 75, 0 },
+												{ 0.667 * 75, 0.667 * 75, 0.667 * 75 },
+												{ 0.667 * 75, -0.667 * 75, 0.667 * 75 },
+												{ -0.667 * 75, -0.667 * 75, 0.667 * 75 },
+												{ 0.667 * 75, -0.667 * 75, -0.667 * 75 },
+												{ -0.667 * 75, -0.667 * 75, -0.667 * 75 }
 	};
 
 }
@@ -1230,6 +1232,7 @@ namespace MyFirstShader {
 													\n\
 			uniform bool Ejercicio5;				\n\
 			uniform float time;						\n\
+			uniform bool samePos;						\n\
 			int halfciclecolor = 1;					\n\
 			out vec4 color;							\n\
 													\n\
@@ -1249,6 +1252,13 @@ namespace MyFirstShader {
 														vec4(0,(1-(time-halfciclecolor)/halfciclecolor)*0.7,0,0));\n\	//3\n\
 						color=colors[gl_PrimitiveID];\n\
 						} \n\
+				}\n\
+				else if(samePos){\n\
+					vec4 colors[4] = vec4[4](vec4(1.0,1.0,1.0,0.5),\n\	//0\n\ //cuadrados\n\
+													vec4(0.9,0.9,0.9,0.5),\n\	//1\n\
+													vec4(0.8,0.8,0.8,0.5),\n\	//2\n\
+													vec4(0.7,0.7,0.7,0.5));\n\	//3\n\
+					color=colors[gl_PrimitiveID];\n\
 				}\n\
 				else{	\n\
 					vec4 colors[4] = vec4[4](vec4(1.0,0.25,0.1,0.5),\n\	//0\n\ //cuadrados\n\
@@ -2972,21 +2982,29 @@ namespace MyFirstShader {
 				glm::mat4 finalRot = rotationX * rotationY*rotationZ;
 
 
+
 				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej4::seeds[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
 				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
 				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej9::Ejercicio9);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "samePos"), (GLboolean)ej6b::samePos[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(finalRot));
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
 				glDrawArrays(GL_TRIANGLES, 0, 3);
 				ej4::seeds[i] -= glm::vec3(0, 0.005f + ej4::speed*ej4::seedR[i], 0);
+
+				for (int j = 0; j < ej6b::HoneyComb;++j) {
+					if ((ej4::seeds[i].y <= ej6b::pos[j].y + 0.2 && ej4::seeds[i].y >= ej6b::pos[j].y - 0.2) && (ej4::seeds[i].x <= ej6b::pos[j].x + 0.2 && ej4::seeds[i].x >= ej6b::pos[j].x - 0.2)) {
+						ej6b::samePos[i] = true;
+					}
+				}
 			}
-			
+
 			bool localRotation2 = true;
 			glUseProgram(myRenderProgram[3]);
+			float mySize2 = 75.f;
 			
-			float mySize2 = 0.1f;
 
 			for (int i = 0; i < ej6b::HoneyComb; ++i) {
 				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)&ej6b::pos[i]);
@@ -3040,6 +3058,9 @@ namespace MyFirstShader {
 				ej5::seeds[i] = glm::vec3{ -2 + i * 4.1 / static_cast<float>(ej5::octoAmount), 2, 0 };
 				ej5::seedR[i] = 0.95*(rand() % 2 + (rand() % 10) / 10.f);
 				ej5::degRot[i] = glm::vec3(getRandomFloatBetween(1, 4), 0, getRandomFloatBetween(1, 4));
+			}
+			for (int i = 0; i < ej4::octoAmount; ++i) {
+				ej6b::samePos[i] = false;
 			}
 		}
 
