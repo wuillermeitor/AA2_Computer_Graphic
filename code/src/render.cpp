@@ -134,9 +134,17 @@ namespace ej6b {
 
 }
 
-namespace ej9 {     //En veritat es el 7
-	int octoAmount = 17;
 
+namespace ej7 {
+	int octoAmount = 17;
+	glm::vec3 voronoi;
+	glm::vec3 voronoi1;
+	glm::vec3 voronoi2;
+	glm::vec3 voronoi3;
+	glm::vec3 voronoi4;
+	glm::vec3 voronoi5;
+	glm::vec3 voronoi6;
+	glm::vec3 voronoi7;
 	glm::vec3* pos = new glm::vec3[octoAmount]{ { 0, 0, 0 },
 	{ 1.333, 0, 0 },
 	{ -0.667, 0.667, -0.667 },
@@ -156,8 +164,23 @@ namespace ej9 {     //En veritat es el 7
 	{ -0.667, -0.667, -0.667 }
 	};
 
-	bool Ejercicio9;
+	bool Ejercicio7;
 }
+
+namespace Ex {
+	bool Ex1 = false;
+	bool Ex2 = false;
+	bool Ex3 = false;
+	bool Ex4 = false;
+	bool Ex5 = false;
+	bool Ex61 = false;
+	bool Ex62 = false;
+	bool Ex63 = false;
+	bool Ex64 = false;
+	bool Ex7 = false;
+}
+
+
 
 ////////////////
 
@@ -2296,15 +2319,102 @@ namespace MyFirstShader {
 		{
 			"#version 330																						\n\
 			uniform float mySize;																				\n\
+			uniform float cubeSize;																				\n\
 			uniform vec3 pos;																					\n\
+			uniform bool Ejercicio6;																			\n\
+			uniform bool Ejercicio7;																			\n\
+			uniform vec3 cubePos;																				\n\
 			vec4 truePos=vec4(pos.x, pos.y, pos.z, 1);															\n\
+			vec4 cubeTruePos = vec4(cubePos.x, cubePos.y+1, cubePos.z,1);										\n\
 			vec4 fix= vec4(0, mySize, 0, 0);																	\n\
+			vec4 cubeFix= vec4(0, cubeSize,0,0);																\n\
 			uniform mat4 rotation;																				\n\
+			uniform mat4 cubeRotation;																			\n\
 			uniform mat4 scale;																					\n\
 			uniform bool localRot;																				\n\
 			layout(lines) in;																					\n\
-			layout(line_strip, max_vertices = 104) out;															\n\
+			layout(line_strip, max_vertices = 128) out;															\n\
 			void main() {																						\n\
+				if (Ejercicio7 ==  true && Ejercicio6 == false){												\n\
+				 vec4 vertices30[4] =	vec4[4](vec4( cubeSize,-cubeSize, cubeSize, 1.0),						\n\
+													vec4( cubeSize, cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize,-cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize, cubeSize, cubeSize, 1.0));					\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+								if(localRot)																	\n\
+						gl_Position = (rotation * (vertices30[i]  + cubeTruePos));								\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices30[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				 vec4 vertices31[4] =	vec4[4](vec4(-cubeSize,-cubeSize, -cubeSize, 1.0),						\n\
+													vec4(-cubeSize, cubeSize, -cubeSize, 1.0),					\n\
+													vec4( cubeSize,-cubeSize, -cubeSize, 1.0),					\n\
+													vec4( cubeSize, cubeSize, -cubeSize, 1.0));					\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+							if(localRot)																		\n\
+						gl_Position = (rotation * (vertices31[i]  + cubeTruePos));								\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices31[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				 vec4 vertices32[4] =	vec4[4](vec4( -cubeSize,-cubeSize, cubeSize, 1.0),						\n\
+													vec4( -cubeSize, cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize,-cubeSize, -cubeSize, 1.0),					\n\
+													vec4(-cubeSize, cubeSize, -cubeSize, 1.0));					\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+										if(localRot)															\n\
+						gl_Position = (rotation * (vertices32[i]  + cubeTruePos));								\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices32[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				vec4 vertices33[4] =	vec4[4](vec4( cubeSize,-cubeSize, -cubeSize, 1.0),						\n\
+													vec4( cubeSize, cubeSize, -cubeSize, 1.0),					\n\
+													vec4(cubeSize,-cubeSize, cubeSize, 1.0),					\n\
+													vec4(cubeSize, cubeSize, cubeSize, 1.0));					\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+										if(localRot)															\n\
+						gl_Position = (rotation * (vertices33[i]  + cubeTruePos));								\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices33[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				 vec4 vertices34[4] =	vec4[4](vec4(cubeSize, cubeSize, cubeSize, 1.0),						\n\
+													vec4( cubeSize, cubeSize, -cubeSize, 1.0),					\n\
+													vec4(-cubeSize, cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize, cubeSize, -cubeSize, 1.0));					\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+										if(localRot)															\n\
+						gl_Position = (rotation * (vertices34[i]  + cubeTruePos));								\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices34[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				 vec4 vertices35[4] =	vec4[4](vec4( cubeSize, -cubeSize, -cubeSize, 1.0),						\n\
+													vec4( cubeSize, -cubeSize, cubeSize, 1.0),					\n\
+													vec4(-cubeSize, -cubeSize, -cubeSize, 1.0),					\n\
+													vec4(-cubeSize, -cubeSize, cubeSize, 1.0));					\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+							if(localRot)																		\n\
+						gl_Position = (rotation * (vertices35[i]  + cubeTruePos));								\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices35[i]-cubeFix))  + cubeTruePos;						\n\
+					gl_PrimitiveID = 2;																			\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				}																								\n\
 				vec4 vertices[4] =	vec4[4](	vec4( 0, mySize/3, -mySize/3, 1.0),								\n\
 												vec4( mySize/3, mySize/3, 0, 1.0),								\n\
 												vec4( 0, mySize/3, mySize/3, 1.0),								\n\
@@ -2602,35 +2712,36 @@ namespace MyFirstShader {
 		{
 			"#version 330							\n\
 													\n\
-			uniform bool Ejercicio5;				\n\
+			uniform bool Ejercicio6;				\n\
+			uniform bool Ejercicio7;				\n\
 			uniform float time;						\n\
 			out vec4 color;							\n\
 			float newtime = time;					\n\
 													\n\
 			void main() {							\n\
-				if(Ejercicio5){\n\
+				if(Ejercicio6 == true){\n\
 					if (newtime < 5){		\n\
 					vec4 colors[4] = vec4[4](vec4(1-(newtime/5),1.0,1-(newtime/5),0),\n\	//0\n\ //cuadrados\n\
 													vec4(1-(newtime/5),0.8,1-(newtime/5),0),\n\	//1\n\
-													vec4(1-(newtime/5),0.9,1-(newtime/5),0),\n\	//2\n\
+													vec4(0,0,0,0),\n\	//2\n\
 													vec4(1-(newtime/5),0.7,1-(newtime/5),0));\n\	//3\n\
 					color=colors[gl_PrimitiveID];\n\
 						} \n\
 					else if (newtime > 5){		\n\
 						vec4 colors[4] = vec4[4](vec4(0,(1-(newtime-5)/5),0,0),\n\	//0\n\ //cuadrados\n\
 														vec4(0,(1-(newtime-5)/5),0,0),\n\	//1\n\
-														vec4(0,(1-(newtime-5)/5),0,0),\n\	//2\n\
+														vec4(0,0,0,0),\n\	//2\n\
 														vec4(0,(1-(newtime-5)/5),0,0));\n\	//3\n\
 						color=colors[gl_PrimitiveID];\n\
 						} \n\
 				}\n\
 				else{	\n\
-					vec4 colors[4] = vec4[4](vec4(1.0,1.0,1.0,1.0),\n\	//0\n\ //cuadrados\n\
-													vec4(0.0,0.0,0.0,1.0),\n\	//1\n\
-													vec4(0.0,1.0,0.0,1.0),\n\	//2\n\
-													vec4(1.0,0.0,0.0,1.0));\n\	//3\n\
-					color=colors[gl_PrimitiveID];\n\
-				}\n\
+					vec4 colors[4] = vec4[4](vec4(1.0,1.0,1.0,1.0),										\n\	//0\n\ //cuadrados\n\
+													vec4(0.0,0.0,0.0,1.0),								\n\	//1\n\
+													vec4(0,0,0,0),								\n\	//2\n\
+													vec4(1.0,0.0,0.0,1.0));								\n\	//3\n\
+					color=colors[gl_PrimitiveID];														\n\
+				}																						\n\
 			}"
 		};
 
@@ -2664,6 +2775,7 @@ namespace MyFirstShader {
 		return woprogram;
 	}
 
+
 	float getRandomFloatBetween(float a, float b) {
 		float random = (static_cast<float>(rand())) / static_cast<float>(RAND_MAX);
 		float diff = b - a;
@@ -2672,6 +2784,7 @@ namespace MyFirstShader {
 	}
 
 	void  myInitCode(void) {
+
 		srand(time(NULL));
 
 		myRenderProgram[0] = cubeShader();
@@ -2721,6 +2834,139 @@ namespace MyFirstShader {
 		float deltaTime = currentTime - ej4::lastTime;
 
 		if (keyboardState[SDL_SCANCODE_1]) {
+			Ex::Ex1 = true;
+			Ex::Ex2 = false;
+			Ex::Ex3 = false;
+			Ex::Ex4 = false;
+			Ex::Ex5 = false;
+			Ex::Ex61 = false;
+			Ex::Ex62 = false;
+			Ex::Ex63 = false;
+			Ex::Ex64 = false;
+			Ex::Ex7 = false;
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
+		}
+		else if (keyboardState[SDL_SCANCODE_2]) {
+			Ex::Ex1 = false;
+			Ex::Ex2 = true;
+			Ex::Ex3 = false;
+			Ex::Ex4 = false;
+			Ex::Ex5 = false;
+			Ex::Ex61 = false;
+			Ex::Ex62 = false;
+			Ex::Ex63 = false;
+			Ex::Ex64 = false;
+			Ex::Ex7 = false;
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
+		}
+		else if (keyboardState[SDL_SCANCODE_3]) {
+			Ex::Ex1 = false;
+			Ex::Ex2 = false;
+			Ex::Ex3 = true;
+			Ex::Ex4 = false;
+			Ex::Ex5 = false;
+			Ex::Ex61 = false;
+			Ex::Ex62 = false;
+			Ex::Ex63 = false;
+			Ex::Ex64 = false;
+			Ex::Ex7 = false;
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
+		}
+		else if (keyboardState[SDL_SCANCODE_4]) {
+			Ex::Ex1 = false;
+			Ex::Ex2 = false;
+			Ex::Ex3 = false;
+			Ex::Ex4 = true;
+			Ex::Ex5 = false;
+			Ex::Ex61 = false;
+			Ex::Ex62 = false;
+			Ex::Ex63 = false;
+			Ex::Ex64 = false;
+			Ex::Ex7 = false;
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
+		}
+		else if (keyboardState[SDL_SCANCODE_5]) {
+			Ex::Ex1 = false;
+			Ex::Ex2 = false;
+			Ex::Ex3 = false;
+			Ex::Ex4 = false;
+			Ex::Ex5 = true;
+			Ex::Ex61 = false;
+			Ex::Ex62 = false;
+			Ex::Ex63 = false;
+			Ex::Ex64 = false;
+			Ex::Ex7 = false;
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
+		}
+		else if (keyboardState[SDL_SCANCODE_6]) {
+			Ex::Ex1 = false;
+			Ex::Ex2 = false;
+			Ex::Ex3 = false;
+			Ex::Ex4 = false;
+			Ex::Ex5 = false;
+			Ex::Ex61 = true;
+			Ex::Ex62 = false;
+			Ex::Ex63 = false;
+			Ex::Ex64 = false;
+			Ex::Ex7 = false;
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
+		}
+		else if (keyboardState[SDL_SCANCODE_7]) {
+			Ex::Ex1 = false;
+			Ex::Ex2 = false;
+			Ex::Ex3 = false;
+			Ex::Ex4 = false;
+			Ex::Ex5 = false;
+			Ex::Ex61 = false;
+			Ex::Ex62 = true;
+			Ex::Ex63 = false;
+			Ex::Ex64 = false;
+			Ex::Ex7 = false;
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
+		}
+		else if (keyboardState[SDL_SCANCODE_8]) {
+			Ex::Ex1 = false;
+			Ex::Ex2 = false;
+			Ex::Ex3 = false;
+			Ex::Ex4 = false;
+			Ex::Ex5 = false;
+			Ex::Ex61 = false;
+			Ex::Ex62 = false;
+			Ex::Ex63 = true;
+			Ex::Ex64 = false;
+			Ex::Ex7 = false;
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
+		}
+		else if (keyboardState[SDL_SCANCODE_0]) {
+			Ex::Ex1 = false;
+			Ex::Ex2 = false;
+			Ex::Ex3 = false;
+			Ex::Ex4 = false;
+			Ex::Ex5 = false;
+			Ex::Ex61 = false;
+			Ex::Ex62 = false;
+			Ex::Ex63 = false;
+			Ex::Ex64 = false;
+			Ex::Ex7 = true;
+			RV::rota[0] = 0;
+			RV::rota[1] = 0;
+		}
+		//else {
+
+
+
+
+		//}
+
+		if (Ex::Ex1) {
 
 			RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
 
@@ -2746,7 +2992,7 @@ namespace MyFirstShader {
 			glUniform1f(glGetUniformLocation(myRenderProgram[0], "time"), (GLfloat)currentTime);
 			glDrawArrays(GL_TRIANGLES, 0, 3);
 		}
-		else if (keyboardState[SDL_SCANCODE_2]) {
+		else if (Ex::Ex2) {
 			RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
 			glUseProgram(myRenderProgram[2]);
 
@@ -2754,7 +3000,7 @@ namespace MyFirstShader {
 
 			glm::vec3 pos{ 0, 5, 0 };
 			bool localRotation = true;
-			ej2::mySize = ((sin(currentTime) + 1) / 2)*1.334/2+1.334/2; 
+			ej2::mySize = ((sin(currentTime) + 1) / 2)*1.334 / 2 + 1.334 / 2;
 			float progress = 0.75*glm::clamp(static_cast<float>((sin(currentTime) + 1) / 2), 0.f, 1.f);
 
 			for (int i = 0; i < ej2::octoAmount; ++i) {
@@ -2765,33 +3011,8 @@ namespace MyFirstShader {
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[2], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
 				glDrawArrays(GL_TRIANGLES, 0, 3);
 			}
-			//RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
-
-			//bool localRotation = true;
-			//ej5::Ejercicio5 = false;
-			//ej9::Ejercicio9 = false;
-			//glUseProgram(myRenderProgram[1]);
-
-			//glm::mat4 scale{ 5.f, 0.f, 0.f, 0.f,
-			//	0.f, 5.f, 0.f, 0.f,
-			//	0.f, 0.f, 5.f, 0.f,
-			//	0.f, 0.f, 0.f, 1.f };
-
-			//float mySize = 1;
-
-			//for (int i = 0; i < ej2::octoAmount; ++i) {
-			//	glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej2::pos[i]);
-			//	glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
-			//	glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
-			//	glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej9::Ejercicio9);
-			//	glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
-			//	glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
-			//	glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "scale"), 1, GL_FALSE, glm::value_ptr(scale));
-			//	glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
-			//	glDrawArrays(GL_TRIANGLES, 0, 3);
-			//}
 		}
-		else if (keyboardState[SDL_SCANCODE_3]) {
+		else if (Ex::Ex3) {
 			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
 
 			glUseProgram(myRenderProgram[0]);
@@ -2823,12 +3044,11 @@ namespace MyFirstShader {
 				ej4::seeds[i] -= glm::vec3(0, 0.005f + ej4::speed*ej4::seedR[i], 0);
 			}
 		}
-		else if (keyboardState[SDL_SCANCODE_4]) {
-
+		else if (Ex::Ex4) {
 			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
 
 			ej5::Ejercicio5 = false;
-			ej9::Ejercicio9 = false;
+			ej7::Ejercicio7 = false;
 			bool localRotation = false;
 			float mySize = 0.1f;
 
@@ -2862,7 +3082,7 @@ namespace MyFirstShader {
 				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej4::seeds[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
 				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej9::Ejercicio9);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej7::Ejercicio7);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(finalRot));
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
@@ -2870,12 +3090,11 @@ namespace MyFirstShader {
 				ej4::seeds[i] -= glm::vec3(0, 0.005f + ej4::speed*ej4::seedR[i], 0);
 			}
 		}
-		else if (keyboardState[SDL_SCANCODE_5]) {
-
+		else if (Ex::Ex5) {
 			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
 
 			ej5::Ejercicio5 = true;
-			ej9::Ejercicio9 = false;
+			ej7::Ejercicio7 = false;
 			bool localRotation = false;
 			float mySize = 0.1f;
 
@@ -2910,7 +3129,7 @@ namespace MyFirstShader {
 				glUniform4fv(glGetUniformLocation(myRenderProgram[1], "color"), 1, (GLfloat*)&ej5::colores[i]);
 				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej5::seeds[i]);
 				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej9::Ejercicio9);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej7::Ejercicio7);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)fmod(currentTime, 2));
 
@@ -2920,7 +3139,7 @@ namespace MyFirstShader {
 				ej5::seeds[i] -= glm::vec3(0, 0.005f + ej5::speed*ej5::seedR[i], 0);
 			}
 		}
-		else if (keyboardState[SDL_SCANCODE_6]) {
+		else if (Ex::Ex61) {
 			RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
 
 			bool localRotation = true;
@@ -2945,12 +3164,11 @@ namespace MyFirstShader {
 				glDrawArrays(GL_LINES, 0, 3);
 			}
 		}
-		else if (keyboardState[SDL_SCANCODE_7]) {
-
+		else if (Ex::Ex62) {
 			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
 
 			ej5::Ejercicio5 = false;
-			ej9::Ejercicio9 = false;
+			ej7::Ejercicio7 = false;
 			bool localRotation = false;
 			float mySize = 0.1f;
 
@@ -2985,7 +3203,7 @@ namespace MyFirstShader {
 				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej4::seeds[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
 				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej9::Ejercicio9);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej7::Ejercicio7);
 				glUniform1i(glGetUniformLocation(myRenderProgram[1], "samePos"), (GLboolean)ej6b::samePos[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(finalRot));
@@ -2993,8 +3211,8 @@ namespace MyFirstShader {
 				glDrawArrays(GL_TRIANGLES, 0, 3);
 				ej4::seeds[i] -= glm::vec3(0, 0.005f + ej4::speed*ej4::seedR[i], 0);
 
-				for (int j = 0; j < ej6b::HoneyComb;++j) {
-					if ((ej4::seeds[i].y <= ej6b::pos[j].y + 0.2 && ej4::seeds[i].y >= ej6b::pos[j].y - 0.2) 
+				for (int j = 0; j < ej6b::HoneyComb; ++j) {
+					if ((ej4::seeds[i].y <= ej6b::pos[j].y + 0.2 && ej4::seeds[i].y >= ej6b::pos[j].y - 0.2)
 						&& (ej4::seeds[i].x <= ej6b::pos[j].x + 0.2 && ej4::seeds[i].x >= ej6b::pos[j].x - 0.2)) {
 						ej6b::samePos[i] = true;
 					}
@@ -3004,7 +3222,7 @@ namespace MyFirstShader {
 			bool localRotation2 = true;
 			glUseProgram(myRenderProgram[3]);
 			float mySize2 = 75.f;
-			
+
 
 			for (int i = 0; i < ej6b::HoneyComb; ++i) {
 				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)&ej6b::pos[i]);
@@ -3015,14 +3233,13 @@ namespace MyFirstShader {
 				glDrawArrays(GL_LINES, 0, 3);
 			}
 		}
-		else if (keyboardState[SDL_SCANCODE_8]) {
-
+		else if (Ex::Ex63) {
 			RV::rota[0] = 1.6;
 			//hay que cambiar esto de la projection o algo, pero el rota está bien
 			RV::_projection = glm::ortho(-RV::width, RV::width, -RV::height, RV::height, RV::zNear, RV::zFar);
 
 			ej5::Ejercicio5 = false;
-			ej9::Ejercicio9 = false;
+			ej7::Ejercicio7 = false;
 			bool localRotation = false;
 			float mySize = 0.1f;
 
@@ -3056,7 +3273,7 @@ namespace MyFirstShader {
 				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej4::seeds[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
 				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej9::Ejercicio9);
+				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej7::Ejercicio7);
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)currentTime);
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(finalRot));
 				glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
@@ -3064,13 +3281,16 @@ namespace MyFirstShader {
 				ej4::seeds[i] -= glm::vec3(0, 0.005f + ej4::speed*ej4::seedR[i], 0);
 			}
 		}
-		else if (keyboardState[SDL_SCANCODE_9]) {
+		else if (Ex::Ex64) {
+
+		}
+		else if (Ex::Ex7) {
 			RV::_projection = glm::perspective(RV::FOV, RV::width / RV::height, RV::zNear, RV::zFar);
 
 			bool localRotation = true;
-			ej5::Ejercicio5 = false;
-			ej9::Ejercicio9 = true;
-			glUseProgram(myRenderProgram[1]);
+			ej6a::Ejercicio5 = false;
+			ej7::Ejercicio7 = true;
+			glUseProgram(myRenderProgram[3]);
 
 			glm::mat4 scale{ 5.f, 0.f, 0.f, 0.f,
 				0.f, 5.f, 0.f, 0.f,
@@ -3078,43 +3298,96 @@ namespace MyFirstShader {
 				0.f, 0.f, 0.f, 1.f };
 
 			float mySize = 1;
+			float cubeSize = 0.1;
+			ej7::voronoi = glm::vec3(fmod(currentTime, 0.125), fmod(currentTime, 0.125), fmod(currentTime, 0.125));
+			ej7::voronoi1 = glm::vec3(-fmod(currentTime, 0.125), fmod(currentTime, 0.125), fmod(currentTime, 0.125));
+			ej7::voronoi2 = glm::vec3(fmod(currentTime, 0.125), -fmod(currentTime, 0.125), fmod(currentTime, 0.125));
+			ej7::voronoi3 = glm::vec3(fmod(currentTime, 0.125), fmod(currentTime, 0.125), -fmod(currentTime, 0.125));
+			ej7::voronoi4 = glm::vec3(-fmod(currentTime, 0.125), -fmod(currentTime, 0.125), fmod(currentTime, 0.125));
+			ej7::voronoi5 = glm::vec3(fmod(currentTime, 0.125), -fmod(currentTime, 0.125), -fmod(currentTime, 0.125));
+			ej7::voronoi6 = glm::vec3(-fmod(currentTime, 0.125), fmod(currentTime, 0.125), -fmod(currentTime, 0.125));
+			ej7::voronoi7 = glm::vec3(-fmod(currentTime, 0.125), -fmod(currentTime, 0.125), -fmod(currentTime, 0.125));
+			glm::vec3 tmp[17] = { ej7::voronoi,
+			{ ej7::voronoi1 },
+			{ ej7::voronoi2 },
+			{ ej7::voronoi3 },
+			{ ej7::voronoi4 },
+			{ ej7::voronoi5 },
+			{ ej7::voronoi6 },
+			{ ej7::voronoi7 },
+			{ ej7::voronoi },
+			{ ej7::voronoi1 },
+			{ ej7::voronoi2 },
+			{ ej7::voronoi3 },
+			{ ej7::voronoi4 },
+			{ ej7::voronoi5 },
+			{ ej7::voronoi6 },
+			{ ej7::voronoi7 },
+			{ ej7::voronoi }
+			};
 
-			for (int i = 0; i < ej9::octoAmount; ++i) {
-				glUniform3fv(glGetUniformLocation(myRenderProgram[1], "pos"), 1, (GLfloat*)&ej9::pos[i]);
-				glUniform1f(glGetUniformLocation(myRenderProgram[1], "mySize"), (GLfloat)mySize);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio5"), (GLboolean)ej5::Ejercicio5);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio9"), (GLboolean)ej9::Ejercicio9);
-				glUniform1f(glGetUniformLocation(myRenderProgram[1], "time"), (GLfloat)fmod(currentTime, 1) / 1);
-				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
-				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[1], "scale"), 1, GL_FALSE, glm::value_ptr(scale));
-				glUniform1f(glGetUniformLocation(myRenderProgram[1], "localRot"), (GLboolean)localRotation);
-				glDrawArrays(GL_TRIANGLES, 0, 3);
+			tmp[0] = ej7::voronoi + ej6a::pos[0];
+			tmp[1] = ej7::voronoi1 + ej6a::pos[1];
+			tmp[2] = ej7::voronoi2 + ej6a::pos[2];
+			tmp[3] = ej7::voronoi3 + ej6a::pos[3];
+			tmp[4] = ej7::voronoi4 + ej6a::pos[4];
+			tmp[5] = ej7::voronoi5 + ej6a::pos[5];
+			tmp[6] = ej7::voronoi6 + ej6a::pos[6];
+			tmp[7] = ej7::voronoi7 + ej6a::pos[7];
+			tmp[8] = ej7::voronoi + ej6a::pos[8];
+			tmp[9] = ej7::voronoi1 + ej6a::pos[9];
+			tmp[10] = ej7::voronoi2 + ej6a::pos[10];
+			tmp[11] = ej7::voronoi3 + ej6a::pos[11];
+			tmp[12] = ej7::voronoi4 + ej6a::pos[12];
+			tmp[13] = ej7::voronoi5 + ej6a::pos[13];
+			tmp[14] = ej7::voronoi6 + ej6a::pos[14];
+			tmp[15] = ej7::voronoi7 + ej6a::pos[15];
+			tmp[16] = ej7::voronoi + ej6a::pos[16];
+
+			for (int i = 0; i < ej6a::octoAmount; ++i) {
+				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)(&tmp[i]));
+				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "cubePos"), 1, (GLfloat*)&tmp[i]);
+				glUniform1f(glGetUniformLocation(myRenderProgram[3], "mySize"), (GLfloat)mySize);
+				glUniform1f(glGetUniformLocation(myRenderProgram[3], "cubeSize"), (GLfloat)cubeSize);
+				glUniform1i(glGetUniformLocation(myRenderProgram[3], "Ejercicio6"), (GLboolean)ej6a::Ejercicio5);
+				glUniform1i(glGetUniformLocation(myRenderProgram[3], "Ejercicio7"), (GLboolean)ej7::Ejercicio7);
+				glUniform1f(glGetUniformLocation(myRenderProgram[3], "time"), (GLfloat)currentTime);
+				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "cubeRotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "scale"), 1, GL_FALSE, glm::value_ptr(scale));
+				glUniform1f(glGetUniformLocation(myRenderProgram[3], "localRot"), (GLboolean)localRotation);
+
+				glDrawArrays(GL_LINES, 0, 3);
 			}
 		}
-		else {
-			RV::rota[0] = 0;
-			RV::rota[1] = 0;
+
+		if (!Ex::Ex1) {
 			ej1::pos1 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
 			ej1::pos2 = glm::vec3(getRandomFloatBetween(-5, 5), getRandomFloatBetween(0, 10), getRandomFloatBetween(-5, 0));
-
+		}
+		else if (!Ex::Ex3) {
 			ej3::seed1 = glm::vec3(1, 0, 0);
 			ej3::seed2 = glm::vec3(-1, 1.4, 0);
-
+		}
+		if (!Ex::Ex4 && !Ex::Ex62 && !Ex::Ex3 && !Ex::Ex63) {
 			for (int i = 0; i < ej4::octoAmount; ++i) {
 				ej4::seeds[i] = glm::vec3{ -2 + i * 4.1 / static_cast<float>(ej4::octoAmount), 2, 0 };
 				ej4::seedR[i] = 0.95*(rand() % 2 + (rand() % 10) / 10.f);
 				ej4::degRot[i] = glm::vec3(getRandomFloatBetween(1, 4), 0, getRandomFloatBetween(1, 4));
 			}
+		}
+		if (!Ex::Ex5) {
 			for (int i = 0; i < ej5::octoAmount; ++i) {
 				ej5::seeds[i] = glm::vec3{ -2 + i * 4.1 / static_cast<float>(ej5::octoAmount), 2, 0 };
 				ej5::seedR[i] = 0.95*(rand() % 2 + (rand() % 10) / 10.f);
 				ej5::degRot[i] = glm::vec3(getRandomFloatBetween(1, 4), 0, getRandomFloatBetween(1, 4));
 			}
+		}
+		if (!Ex::Ex62) {
 			for (int i = 0; i < ej4::octoAmount; ++i) {
 				ej6b::samePos[i] = false;
 			}
 		}
-
 		ej4::lastTime = currentTime;
 	}
 
