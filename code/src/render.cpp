@@ -1878,17 +1878,102 @@ namespace MyFirstShader {
 		{
 			"#version 330																						\n\
 			uniform float mySize;																				\n\
+			uniform float cubeSize;																				\n\
 			uniform vec3 pos;																					\n\
 			uniform bool Ejercicio6;																			\n\
 			uniform bool Ejercicio7;																			\n\
+			uniform vec3 cubePos;														\n\
 			vec4 truePos=vec4(pos.x, pos.y, pos.z, 1);															\n\
+			vec4 cubeTruePos = vec4(cubePos.x, cubePos.y+1, cubePos.z,1);					\n\
 			vec4 fix= vec4(0, mySize, 0, 0);																	\n\
+			vec4 cubeFix= vec4(0, cubeSize,0,0);											\n\
 			uniform mat4 rotation;																				\n\
+			uniform mat4 cubeRotation;													\n\
 			uniform mat4 scale;																					\n\
 			uniform bool localRot;																				\n\
 			layout(lines) in;																					\n\
-			layout(line_strip, max_vertices = 104) out;															\n\
+			layout(line_strip, max_vertices = 128) out;															\n\
 			void main() {																						\n\
+				if (Ejercicio7 ==  true && Ejercicio6 == false){												\n\
+				 vec4 vertices30[4] =	vec4[4](vec4( cubeSize,-cubeSize, cubeSize, 1.0),										\n\
+													vec4( cubeSize, cubeSize, cubeSize, 1.0),								\n\
+													vec4(-cubeSize,-cubeSize, cubeSize, 1.0),								\n\
+													vec4(-cubeSize, cubeSize, cubeSize, 1.0));								\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+								if(localRot)																				\n\
+						gl_Position = (rotation * (vertices30[i]  + cubeTruePos));									\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices30[i]-cubeFix))  + cubeTruePos;								\n\
+					gl_PrimitiveID = 2;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				 vec4 vertices31[4] =	vec4[4](vec4(-cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
+													vec4(-cubeSize, cubeSize, -cubeSize, 1.0),								\n\
+													vec4( cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
+													vec4( cubeSize, cubeSize, -cubeSize, 1.0));								\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+							if(localRot)																				\n\
+						gl_Position = (rotation * (vertices31[i]  + cubeTruePos));									\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices31[i]-cubeFix))  + cubeTruePos;								\n\
+					gl_PrimitiveID = 2;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				 vec4 vertices32[4] =	vec4[4](vec4( -cubeSize,-cubeSize, cubeSize, 1.0),								\n\
+													vec4( -cubeSize, cubeSize, cubeSize, 1.0),								\n\
+													vec4(-cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
+													vec4(-cubeSize, cubeSize, -cubeSize, 1.0));								\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+										if(localRot)																				\n\
+						gl_Position = (rotation * (vertices32[i]  + cubeTruePos));									\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices32[i]-cubeFix))  + cubeTruePos;								\n\
+					gl_PrimitiveID = 2;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				 vec4 vertices33[4] =	vec4[4](vec4( cubeSize,-cubeSize, -cubeSize, 1.0),								\n\
+													vec4( cubeSize, cubeSize, -cubeSize, 1.0),								\n\
+													vec4(cubeSize,-cubeSize, cubeSize, 1.0),								\n\
+													vec4(cubeSize, cubeSize, cubeSize, 1.0));								\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+										if(localRot)																				\n\
+						gl_Position = (rotation * (vertices33[i]  + cubeTruePos));									\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices33[i]-cubeFix))  + cubeTruePos;								\n\
+					gl_PrimitiveID = 2;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				 vec4 vertices34[4] =	vec4[4](vec4(cubeSize, cubeSize, cubeSize, 1.0),								\n\
+													vec4( cubeSize, cubeSize, -cubeSize, 1.0),								\n\
+													vec4(-cubeSize, cubeSize, cubeSize, 1.0),								\n\
+													vec4(-cubeSize, cubeSize, -cubeSize, 1.0));								\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+										if(localRot)																				\n\
+						gl_Position = (rotation * (vertices34[i]  + cubeTruePos));									\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices34[i]-cubeFix))  + cubeTruePos;								\n\
+					gl_PrimitiveID = 2;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				 vec4 vertices35[4] =	vec4[4](vec4( cubeSize, -cubeSize, -cubeSize, 1.0),								\n\
+													vec4( cubeSize, -cubeSize, cubeSize, 1.0),								\n\
+													vec4(-cubeSize, -cubeSize, -cubeSize, 1.0),								\n\
+													vec4(-cubeSize, -cubeSize, cubeSize, 1.0));								\n\
+				for (int i = 0; i < 4; ++i) {																	\n\
+							if(localRot)																				\n\
+						gl_Position = (rotation * (vertices35[i]  + cubeTruePos));									\n\
+					else																						\n\
+						gl_Position = (rotation * (vertices35[i]-cubeFix))  + cubeTruePos;								\n\
+					gl_PrimitiveID = 2;\n\
+					EmitVertex();																				\n\
+				}																								\n\
+				EndPrimitive();																					\n\
+				}																		\n\
 				vec4 vertices[4] =	vec4[4](	vec4( 0, mySize/3, -mySize/3, 1.0),								\n\
 												vec4( mySize/3, mySize/3, 0, 1.0),								\n\
 												vec4( 0, mySize/3, mySize/3, 1.0),								\n\
@@ -1921,7 +2006,7 @@ namespace MyFirstShader {
 												vec4( -mySize/3, mySize, 2*mySize/3, 1.0));						\n\
 				for (int i = 0; i < 4; ++i) {																	\n\
 					if(localRot)																				\n\
-						gl_Position = rotation * (vertices3[i]  + truePos);										\n\
+						gl_Position = rotation * (vertices3[i]  + cubeTruePos);										\n\
 					else																						\n\
 						gl_Position = (rotation * (vertices3[i]-fix))  + truePos;								\n\
 					gl_PrimitiveID = 1;																			\n\
@@ -2197,14 +2282,14 @@ namespace MyFirstShader {
 					if (newtime < 5){		\n\
 					vec4 colors[4] = vec4[4](vec4(1-(newtime/5),1.0,1-(newtime/5),0),\n\	//0\n\ //cuadrados\n\
 													vec4(1-(newtime/5),0.8,1-(newtime/5),0),\n\	//1\n\
-													vec4(1-(newtime/5),0.9,1-(newtime/5),0),\n\	//2\n\
+													vec4(0,0,0,0),\n\	//2\n\
 													vec4(1-(newtime/5),0.7,1-(newtime/5),0));\n\	//3\n\
 					color=colors[gl_PrimitiveID];\n\
 						} \n\
 					else if (newtime > 5){		\n\
 						vec4 colors[4] = vec4[4](vec4(0,(1-(newtime-5)/5),0,0),\n\	//0\n\ //cuadrados\n\
 														vec4(0,(1-(newtime-5)/5),0,0),\n\	//1\n\
-														vec4(0,(1-(newtime-5)/5),0,0),\n\	//2\n\
+														vec4(0,0,0,0),\n\	//2\n\
 														vec4(0,(1-(newtime-5)/5),0,0));\n\	//3\n\
 						color=colors[gl_PrimitiveID];\n\
 						} \n\
@@ -2212,7 +2297,7 @@ namespace MyFirstShader {
 				else{	\n\
 					vec4 colors[4] = vec4[4](vec4(1.0,1.0,1.0,1.0),										\n\	//0\n\ //cuadrados\n\
 													vec4(0.0,0.0,0.0,1.0),								\n\	//1\n\
-													vec4(0.0,1.0,0.0,1.0),								\n\	//2\n\
+													vec4(0,0,0,0),								\n\	//2\n\
 													vec4(1.0,0.0,0.0,1.0));								\n\	//3\n\
 					color=colors[gl_PrimitiveID];														\n\
 				}																						\n\
@@ -2499,6 +2584,7 @@ namespace MyFirstShader {
 				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio7"), (GLboolean)ej7::Ejercicio7);
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "time"), (GLfloat)currentTime);
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "cubeRotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "scale"), 1, GL_FALSE, glm::value_ptr(scale));
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "localRot"), (GLboolean)localRotation);
 				glDrawArrays(GL_LINES, 0, 3);
@@ -2518,16 +2604,21 @@ namespace MyFirstShader {
 				0.f, 0.f, 0.f, 1.f };
 
 			float mySize = 1;
+			float cubeSize = 0.05;
 
 			for (int i = 0; i < ej6a::octoAmount; ++i) {
 				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "pos"), 1, (GLfloat*)&ej6a::pos[i]);
+				glUniform3fv(glGetUniformLocation(myRenderProgram[3], "cubePos"), 1, (GLfloat*)&ej6a::pos[i]);
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "mySize"), (GLfloat)mySize);
+				glUniform1f(glGetUniformLocation(myRenderProgram[3], "cubeSize"), (GLfloat)cubeSize);
 				glUniform1i(glGetUniformLocation(myRenderProgram[3], "Ejercicio6"), (GLboolean)ej6a::Ejercicio6);
-				glUniform1i(glGetUniformLocation(myRenderProgram[1], "Ejercicio7"), (GLboolean)ej7::Ejercicio7);
+				glUniform1i(glGetUniformLocation(myRenderProgram[3], "Ejercicio7"), (GLboolean)ej7::Ejercicio7);
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "time"), (GLfloat)currentTime);
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "rotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
+				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "cubeRotation"), 1, GL_FALSE, glm::value_ptr(RV::_MVP));
 				glUniformMatrix4fv(glGetUniformLocation(myRenderProgram[3], "scale"), 1, GL_FALSE, glm::value_ptr(scale));
 				glUniform1f(glGetUniformLocation(myRenderProgram[3], "localRot"), (GLboolean)localRotation);
+
 				glDrawArrays(GL_LINES, 0, 3);
 			}
 		}
