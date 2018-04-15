@@ -41,18 +41,18 @@ e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(2815): warnin
 e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(2822): warning C4305: '=': truncamiento de 'double' a 'float'
 e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(2829): warning C4305: '=': truncamiento de 'double' a 'float'
 e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(2834): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3003): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3004): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3020): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3058): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3104): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3178): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3237): warning C4305: '=': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3249): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3301): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3375): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3382): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
-e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3393): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(2997): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(2998): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3014): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3052): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3098): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3172): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3231): warning C4305: '=': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3243): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3295): warning C4305: 'inicializando': truncamiento de 'double' a 'float'
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3369): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3376): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
+e:\guillermohdd\documents\aa2_computer_graphic\code\src\render.cpp(3385): warning C4244: '=': conversión de 'double' a 'float'; posible pérdida de datos
   GL_framework.vcxproj -> E:\GuillermoHDD\Documents\AA2_Computer_Graphic\x64\Debug\GL_framework.exe
   0 archivo(s) copiado(s)
   0 archivo(s) copiado(s)

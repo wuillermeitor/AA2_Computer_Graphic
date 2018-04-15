@@ -2959,12 +2959,6 @@ namespace MyFirstShader {
 			RV::rota[0] = 0;
 			RV::rota[1] = 0;
 		}
-		//else {
-
-
-
-
-		//}
 
 		if (Ex::Ex1) {
 
